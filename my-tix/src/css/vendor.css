@@ -1,0 +1,21 @@
+#header{
+	padding: 40px 0;
+	border: 1px solid #000000;
+
+}
+
+li{
+	padding: 60px 20px;
+	border: 1px solid #000000;
+	background-color: lightblue; 
+	text-align: center;
+	margin: 0;
+	list-style: none;
+}
+
+#reactComponents{
+	border: 1px solid #000000;
+	height: 440px;
+	width: 100%;
+}
+
