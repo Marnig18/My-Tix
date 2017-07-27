@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
 import { ListGroup, Panel, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
-import EditEventModal from './modals/editEvent'
 
 class Home extends React.Component{
 
@@ -9,9 +8,14 @@ class Home extends React.Component{
 		super();
 
 		this.state= {
-			show: false
+			show: false,
+			show2: false,
+			show3: false
 		}
 	}
+//--------------------------------
+//--------------------------------
+	//Show and Hide Modal Functions
 
 	  showModal = () => {
 	    this.setState({show: true});
@@ -20,6 +24,25 @@ class Home extends React.Component{
 	  hideModal =() => {
 	    this.setState({show: false});
 	  }
+
+	  showModal2 = () => {
+	    this.setState({show2: true});
+	  }
+
+	  hideModal2 =() => {
+	    this.setState({show2: false});
+	  }
+
+    showModal3 = () => {
+    this.setState({show3: true});
+	  }
+
+	  hideModal3 =() => {
+	    this.setState({show3: false});
+	  }
+//--------------------------------
+//--------------------------------
+
 
 	
 
@@ -141,8 +164,19 @@ class Home extends React.Component{
 														</Form>
 													</Modal.Body>
 												</Modal>
-											<Button block>View Data</Button>
-											<Button block>Customer Page</Button>
+											<Button block onClick={this.showModal2}>View Data</Button>
+												<Modal
+								          show={this.state.show2}
+								          onHide={this.hideModal2}>
+													<Modal.Header>
+														<Modal.Title>Data</Modal.Title>
+													</Modal.Header>
+													<Modal.Body>Graphs go here</Modal.Body>
+													<Modal.Footer>
+														<Button onClick={this.hideModal2}>Close</Button>
+													</Modal.Footer>	
+												</Modal>
+											<Button href="" block>Customer Page</Button>
 										</Col>
 									</Row>
 								</ListGroupItem>
@@ -159,7 +193,18 @@ class Home extends React.Component{
 											<h4>Event Name</h4>
 										</Col>
 										<Col bsClass="col" xs={4}>
-											<Button block>View Data</Button>
+											<Button onClick={this.showModal3} block>View Data</Button>
+												<Modal
+								          show={this.state.show3}
+								          onHide={this.hideModal3}>
+													<Modal.Header>
+														<Modal.Title>Data</Modal.Title>
+													</Modal.Header>
+													<Modal.Body>Graphs go here</Modal.Body>
+													<Modal.Footer>
+														<Button onClick={this.hideModal3}>Close</Button>
+													</Modal.Footer>	
+												</Modal>
 										</Col>
 									</Row>
 								</ListGroupItem>
