@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
 import { ListGroup, Panel, FormGroup, FormControl, ControlLabel, Form,  } from 'react-bootstrap'
 
-class NewEvent extends React.Component{
+class CreateNewEvent extends React.Component{
 
 	constructor(){
 		super();
@@ -91,4 +91,4 @@ class NewEvent extends React.Component{
 
 
 
-export default NewEvent;
+export default CreateNewEvent;
