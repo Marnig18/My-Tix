@@ -1,3 +1,7 @@
+import Customer from "customers.js"
+
+import Option from "options.js"
+
 // Include the Mongoose Dependencies
 var mongoose = require("mongoose");
 
@@ -30,15 +34,9 @@ var EventSchema = new Schema({
     ref: "Users"
   },
 
-  Options: {
-  	type: Schema.Types.ObjectId
-  	ref: "Options"
-  },
+  Options: [Option], 
 
-  Customer: {
-  	type: Schema.Types.ObjectId,
-  	ref: "Customers"
-  }
+  Customer: [Customer]
 
 });
 
