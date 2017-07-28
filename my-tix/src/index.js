@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 
 import Main from './main';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 
 
 
