@@ -9,6 +9,7 @@ class CreateNewEvent extends React.Component{
 
 		this.state= {
 			show: false
+
 		}
 	}
 
@@ -25,6 +26,7 @@ class CreateNewEvent extends React.Component{
 				<Grid fluid>
 					<Row bsClass='row'>
 						<Col bsClass="col" xs={12}>
+						<PageHeader>Create A New Event</PageHeader>
 							<form>
 								<FormGroup controlId="newEventName"> 
 									<ControlLabel>Event Name</ControlLabel>

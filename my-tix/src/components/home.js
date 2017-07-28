@@ -68,8 +68,8 @@ class Home extends React.Component{
 													<Modal.Header>
 														<Modal.Title>Edit Event</Modal.Title>
 													</Modal.Header>
+												<Form horizontal>
 													<Modal.Body>
-														<Form horizontal>
 															<FormGroup controlId="formEditName">
 																<Col componentClass={ControlLabel} xs={2}>
 																	Event Name
@@ -107,63 +107,71 @@ class Home extends React.Component{
 													       	</Col>
 												       </FormGroup>
 												       	<ListGroup>
-																	<ListGroupItem>
-														       <FormGroup controlId="formOption1">
-																			<Col componentClass={ControlLabel} xs={2}>
-																				Option Name:
-															        </Col>
+												       		<ListGroupItem>
+													       		<Row bsClass="row">
+																			<Col componentClass={ControlLabel} xs={4}>
+																					Option Name:
+																	     </Col>
+																	    <Col bsClass="col" xs={8}>
+																	     	<Row bsClass="row">
+																			     	 <Col componentClass={ControlLabel} xs={4}>
+																			        	Name:
+																			       	</Col>  
+																		       		<Col xs={8}>
+																		       			<FormControl type="text" value={this.state.value} placeholder="" 
+																		            onChange={this.handleChange}/>
+																	       			</Col>
+																		       	</Row>
+																		      
+												
+																		       	<Row bsClass="row">
+																		        	<Col componentClass={ControlLabel} xs={4}>
+																		        		Price:
+																		        	</Col>  
+																	       			<Col xs={8}>
+																	       				<FormControl type="number" value={this.state.value} placeholder="" 
+																	            	onChange={this.handleChange}/>
+																	       			</Col>
+																       			</Row>	
+																       			
+																       			<Row bsClas="row">
+																			        <Col componentClass={ControlLabel} xs={4}>
+																			        	Quantity: 
+																			        </Col>  
+																		       		<Col xs={8}>
+																		       			<FormControl type="number" value={this.state.value} placeholder="" 
+																		            onChange={this.handleChange}/>
+																		       		</Col>
+																       			</Row>
+																       		
+																       			<Row bsClass="row">
+																			        <Col componentClass={ControlLabel} xs={4}>
+																			        	Description:
+																			        </Col>  
+																		       		<Col xs={8}>
+																		       			<FormControl componentClass="textarea" value={this.state.value} placeholder="" 
+																		            onChange={this.handleChange}/>
+																		       		</Col>
+																	       		</Row>	
+																					</Col>
+																	
+																	   	 </Row> 	
+																    	</ListGroupItem>
+															    	 </ListGroup>	
+																	</Modal.Body>
+																	<Modal.Footer>
+																		<FormGroup>
+																      <Col smOffset={2} sm={10}>
+																        <Button type="submit">
+																          Save Changes
+																        </Button>
+																      </Col>
+																    </FormGroup>
+																   </Modal.Footer> 
 
-															        <FormGroup controlId="formEditOptionName">
-															        	<Row bsClass="row">
-																	        <Col componentClass={ControlLabel} xs={2}>
-																	        	Name:
-																	        </Col>  
-																       		<Col xs={6}>
-																       			<FormControl type="text" value={this.state.value} placeholder="" 
-																            onChange={this.handleChange}/>
-																       		</Col>
-																       	</Row>
-																       	<Row bsClass="row">
-																        	<Col componentClass={ControlLabel} xs={2}>
-																        		Price:
-																        	</Col>  
-															       			<Col xs={6}>
-															       				<FormControl type="number" value={this.state.value} placeholder="" 
-															            	onChange={this.handleChange}/>
-															       			</Col>
-														       			</Row>	
-														       			<Row bsClas="row">
-																	        <Col componentClass={ControlLabel} xs={2}>
-																	        	Quantity: 
-																	        </Col>  
-																       		<Col xs={6}>
-																       			<FormControl type="integer" value={this.state.value} placeholder="" 
-																            onChange={this.handleChange}/>
-																       		</Col>
-														       			</Row>
-														       		<Row bsClass="row">
-																        <Col componentClass={ControlLabel} xs={2}>
-																        	Description:
-																        </Col>  
-															       		<Col xs={6}>
-															       			<FormControl type="textarea" value={this.state.value} placeholder="" 
-															            onChange={this.handleChange}/>
-															       		</Col>
-														       		</Row>	
-														       	</FormGroup>	
-																	</FormGroup>
-																	<FormGroup>
-															      <Col smOffset={2} sm={10}>
-															        <Button type="submit">
-															          Save Changes
-															        </Button>
-															      </Col>
-															    </FormGroup>	
-																</ListGroupItem>	
-															</ListGroup>							
-														</Form>
-													</Modal.Body>
-												</Modal>
+																</Form>
+										
+														</Modal>
 											<Button block onClick={this.showModal2}>View Data</Button>
 												<Modal
 								          show={this.state.show2}
