@@ -86,7 +86,7 @@ class App extends React.Component{
 					<Col xs={8}>
 						<div id="reactComponents">
 							<Route exact path="/home" component={Home} />
-							<Route exact path="/newevent" render={(props)=><CreateNewEvent makeNewOption={this.makeNewOption} makeNewEvent={this.makeNewEvent}/>} />
+							<Route exact path="/newevent" render={(props)=><CreateNewEvent makeNewOption={this.makeNewOption} makeNewEvent={this.makeNewEvent} options={this.state.options}/>} />
 							<Route exact path="/editUser" component={Settings} />
 						</div>
 					</Col>

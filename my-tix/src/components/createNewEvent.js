@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
 import { ListGroup, FormGroup, FormControl, ControlLabel,  } from 'react-bootstrap'
 import axios from 'axios'
+import DisplayOptions from './optionsList'
 
 class CreateNewEvent extends React.Component{
 
@@ -124,14 +125,7 @@ class CreateNewEvent extends React.Component{
 							        <Button type="submit" onClick={this.handleOptionSubmit} bsStyle="primary">Save changes</Button>
 							      </Modal.Footer>
 							  	 </Modal>	
-							  	<ListGroup>
-							  		<ListGroupItem>
-							  			<h4>Option Name</h4>
-							  			<p>Price:</p>
-							  			<p>Quantity:</p>
-							  			<p>Description</p>
-							  		</ListGroupItem>
-							  	</ListGroup> 
+									<DisplayOptions options={this.props.options}/>
 							  <Button type="submit" onClick={this.handleEventSubmit}>Add Event</Button>				   
 							</form>
 						</Col>
