@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
-import { ListGroup, Panel, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
+import { ListGroup, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
 
 class Home extends React.Component{
 

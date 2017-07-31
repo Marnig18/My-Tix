@@ -25,7 +25,7 @@ var CustomerSchema = new Schema({
   	optionName: {
   		type: String,
   		required: true
-  	}
+  	},
   	optionPrice: {
   		type: Number,
   		required: true

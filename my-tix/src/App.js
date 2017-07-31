@@ -7,10 +7,62 @@ import CreateNewEvent from "./components/CreateNewEvent"
 import Settings from "./components/Settings"
 import { Route, Link } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
+import axios from 'axios'
 
 
 
 class App extends React.Component{
+
+	constructor(){
+		super();
+
+		this.state={
+			options: [],
+			events: []
+		}
+		this.makeNewOption = this.makeNewOption.bind(this)
+		this.makeNewEvent = this.makeNewEvent.bind(this)
+	}
+
+	makeNewOption(newOptionName, newOptionPrice, newOptionQuantity, newOptionDescription){
+		axios
+			.post('/api/newOption', {
+				optionName: newOptionName,
+				optionPrice: newOptionPrice,
+				optionQuantity: newOptionQuantity,
+				optionDescription: newOptionDescription
+			})
+			.then(response => {
+				console.log(response.data)
+				var newOptions = this.state.options
+				newOptions.push(response.data)
+				this.setState({	
+
+						options: newOptions 
+
+		})
+	})
+}
+
+	makeNewEvent(newEventName, newEventStart, newEventEnd, newEventPicture){
+		axios
+			.post('/api/newEvent', {
+					Name: newEventName,
+					StartDate: newEventStart,
+					EndDate: newEventEnd,
+					picture: newEventPicture
+			})
+			.then(response =>{
+				console.log(response.data)
+				var newEvent = this.state.events
+				newEvent.push(response.data)
+				this.setState({	
+
+						events: newEvent
+					})
+			})
+	}
+
 
 	render(){
 		return(
@@ -34,7 +86,7 @@ class App extends React.Component{
 					<Col xs={8}>
 						<div id="reactComponents">
 							<Route exact path="/home" component={Home} />
-							<Route exact path="/newevent" component={CreateNewEvent} />
+							<Route exact path="/newevent" render={(props)=><CreateNewEvent makeNewOption={this.makeNewOption} makeNewEvent={this.makeNewEvent}/>} />
 							<Route exact path="/editUser" component={Settings} />
 						</div>
 					</Col>

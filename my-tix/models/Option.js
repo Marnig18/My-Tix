@@ -31,7 +31,7 @@ var OptionSchema = new Schema({
 
   numberBought: {
     type: Number,
-    required: true
+    // required: true
   }
 
 });

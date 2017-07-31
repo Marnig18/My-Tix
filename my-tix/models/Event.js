@@ -1,6 +1,6 @@
-import Customer from "customers.js"
+var Customer =require("./Customer")
 
-import Option from "options.js"
+var Option =require("./Option")
 
 // Include the Mongoose Dependencies
 var mongoose = require("mongoose");
@@ -9,24 +9,28 @@ var Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
 	
-  title: {
+  Name: {
     type: String,
     required: true
   },
 
-  summary: {
-    type: String, 
+  StartDate: {
+    type: Date, 
     required: true
   },
 
-  date: {
-  	type: Number, //use moment.js
+  EndDate: {
+  	type: Date, //use moment.js
   	required: true
+  },
+
+  picture:{
+    type: String,
   },
 
   venderVenmoEmail: {
   	type: String, 
-  	required: true
+  	// required: true
   },
 
   User: {
@@ -34,9 +38,15 @@ var EventSchema = new Schema({
     ref: "Users"
   },
 
-  Options: [Option], 
+  Option: {
+    type: Array,
+    ref: Option
+  },
 
-  Customer: [Customer]
+  Customer: { 
+    type: Array,
+    ref: Customer
+  }
 
 });
 

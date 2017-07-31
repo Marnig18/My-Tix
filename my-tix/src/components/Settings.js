@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
-import { ListGroup, Panel, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
+import { Button, Row, Col, PageHeader, Grid } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
 
 
 class Settings extends React.Component{
@@ -35,6 +35,9 @@ class Settings extends React.Component{
 									<ControlLabel>Phone</ControlLabel>
 									<FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter Name"/>
 								</FormGroup>
+								   <Button type="submit">
+						          Save Changes
+						        </Button>
 							</Form>	
 						</Col>
 					</Row>
