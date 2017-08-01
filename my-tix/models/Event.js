@@ -40,11 +40,8 @@ var EventSchema = new Schema({
     ref: "Users"
   },
 
-  Option:[],
-
- 
+  Option:[], 
       
-
   Customer: []
 
 });
