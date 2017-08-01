@@ -19,7 +19,23 @@ var session = require("express-session");
 //passport
 var passport = require("./config/passport");
 
- //host static docs
+ 
+
+
+
+
+// Requiring Models
+var Customer = require('./models/Customer')
+var Event = require("./models/Event")
+var Option = require("./models/Option")
+var User = require("./models/User")
+
+//Creating Express app
+
+var app = express();
+var PORT = process.env.PORT || 3001;
+
+//host static docs
  app.use('/static', express.static("public"));
  // app.get('/', (req, res) => {
  // 	console.log('hello')
@@ -31,20 +47,6 @@ var passport = require("./config/passport");
  app.use(passport.session());
 
 
-
-
-
-// Requiring Models
-var Customer = require('./models/Customer')
-var Event = require("./models/Event")
-var Option = require("./models/Option")
-var User = require("./models/user")
-
-//Creating Express app
-
-var app = express();
-var PORT = process.env.PORT || 3001;
-
 // Run Morgan for Logging
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -52,7 +54,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use(express.static("public"));
+
 
 // ------------------------------------------------
 
@@ -73,7 +75,8 @@ db.once('open', () => {
 })
 // -------------------------------------------------
 
-require("./routes/api-routes")(app)
+require("./routes/api-routes")(app);
+require("./routes/login-routes")(app);
 // Starting our express server
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);

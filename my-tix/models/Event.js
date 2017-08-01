@@ -46,8 +46,13 @@ var EventSchema = new Schema({
 
 });
 
+
+
+
 // Create the Model
 var Event = mongoose.model("Event", EventSchema);
+
+
 
 // Export it for use elsewhere
 module.exports = Event;

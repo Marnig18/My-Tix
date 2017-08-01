@@ -8,6 +8,8 @@ import Settings from "./components/Settings"
 import { Route, Link } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'
+import helper from "./utils/helpers.js"
+
 
 
 
@@ -64,6 +66,9 @@ class App extends React.Component{
 					})
 			})
 	}
+
+
+
 
 
 	render(){
