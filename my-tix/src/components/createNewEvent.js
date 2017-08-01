@@ -18,9 +18,11 @@ class CreateNewEvent extends React.Component{
 			newOptionName: "",
 			newOptionPrice: "",
 			newOptionQuantity: "",
-			newOptionDescription: ""
+			newOptionDescription: "",	
+			options: []
 
 		}
+
 		this.handleChange = this.handleChange.bind(this)
 		this.handleOptionSubmit = this.handleOptionSubmit.bind(this)
 		this.handleEventSubmit = this.handleEventSubmit.bind(this)
@@ -48,25 +50,29 @@ class CreateNewEvent extends React.Component{
 		event.preventDefault()
 		console.log('handlesubmit called')
 		// console.log(this.state)
-		this.props.makeNewOption(this.state.newOptionName, this.state.newOptionPrice, this.state.newOptionQuantity, this.state.newOptionQuantity)
+		this.props.makeNewOption(this.state.newOptionName, this.state.newOptionPrice, this.state.newOptionQuantity, this.state.newOptionDescription)
 		this.setState({
 			newOptionName: "",
 			newOptionPrice: "",
 			newOptionQuantity: "",
 			newOptionDescription: ""
+	
 			})
+			this.hideModal();
 		}
 
 		handleEventSubmit(event){
 			event.preventDefault()
 			console.log('handlesubmit called')
 			// console.log(this.state)
-			this.props.makeNewEvent(this.state.newEventName, this.state.newEventStart, this.state.newEventEnd, this.state.newEventPicture)
+			this.props.makeNewEvent(this.state.newEventName, this.state.newEventStart, this.state.newEventEnd, this.state.newEventPicture, this.props.options)
+			console.log(this.props.options)
 			this.setState({
 				newEventName: "",
 				newEventStart: "",
 				newEventEnd: "",
-				newEventPicture: ""
+				newEventPicture: "",
+				options: []
 				})
 		
 		}
@@ -122,7 +128,7 @@ class CreateNewEvent extends React.Component{
 						       	</Modal.Body>	
 						      	<Modal.Footer>
 							        <Button onClick={this.hideModal} >Close</Button>
-							        <Button type="submit" onClick={this.handleOptionSubmit} bsStyle="primary">Save changes</Button>
+							        <Button type="submit" onClick={this.handleOptionSubmit}  bsStyle="primary">Save changes</Button>
 							      </Modal.Footer>
 							  	 </Modal>	
 									<DisplayOptions options={this.props.options}/>

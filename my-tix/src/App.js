@@ -44,13 +44,15 @@ class App extends React.Component{
 	})
 }
 
-	makeNewEvent(newEventName, newEventStart, newEventEnd, newEventPicture){
+	makeNewEvent(newEventName, newEventStart, newEventEnd, newEventPicture, options){
 		axios
 			.post('/api/newEvent', {
 					Name: newEventName,
 					StartDate: newEventStart,
 					EndDate: newEventEnd,
-					picture: newEventPicture
+					picture: newEventPicture,
+					Option: this.state.options
+					
 			})
 			.then(response =>{
 				console.log(response.data)

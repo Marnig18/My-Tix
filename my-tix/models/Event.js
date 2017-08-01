@@ -1,9 +1,11 @@
-var Customer =require("./Customer")
 
-var Option =require("./Option")
 
 // Include the Mongoose Dependencies
 var mongoose = require("mongoose");
+
+var CustomerSchema =require("./Customer")
+
+var OptionSchema =require("./Option")
 
 var Schema = mongoose.Schema;
 
@@ -38,15 +40,12 @@ var EventSchema = new Schema({
     ref: "Users"
   },
 
-  Option: {
-    type: Array,
-    ref: Option
-  },
+  Option:[],
 
-  Customer: { 
-    type: Array,
-    ref: Customer
-  }
+ 
+      
+
+  Customer: []
 
 });
 
