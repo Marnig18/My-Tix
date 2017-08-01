@@ -4,10 +4,17 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "express-session": "^1.15.4",
     "mongoose": "^4.11.4",
     "morgan": "^1.8.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "path": "^0.12.7",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
     "react-dom": "^15.6.1",
@@ -28,4 +35,5 @@
     "dev": "concurrently \"react-scripts start\" \"nodemon server.js\""
   },
   "proxy": "http://localhost:3001"
+
 }

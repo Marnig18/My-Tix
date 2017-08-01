@@ -1,8 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
 //Include Server Dependencies
 var express =  require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var logger = require("morgan");
+var session = require("express-session");
+
+//passport
+var passport = require("./config/passport");
+
+ //host static docs
+ app.use('/static', express.static("public"));
+ // app.get('/', (req, res) => {
+ // 	console.log('hello')
+ // 	res.json({test: 'hello'})
+ // })
+ //Passport
+ // app.use(session({ secret: "food secret", resave: true, saveUninitialized: true}));
+ app.use(passport.initialize());
+ app.use(passport.session());
+
+
+
+
 
 // Requiring Models
 var Customer = require('./models/Customer')
@@ -48,3 +78,4 @@ require("./routes/api-routes")(app)
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
+
