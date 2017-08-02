@@ -2,9 +2,9 @@ import React from 'react';
 import vendorCSS from "./css/vendor.css"
 import { Button, Row, Col, ListGroupItem, Grid } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap'
-import Home from "./components/Home"
-import CreateNewEvent from "./components/CreateNewEvent"
-import Settings from "./components/Settings"
+import Home from "./containers/Home"
+import CreateNewEvent from "./containers/CreateNewEvent"
+import Settings from "./containers/Settings"
 import { Route, Link } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'

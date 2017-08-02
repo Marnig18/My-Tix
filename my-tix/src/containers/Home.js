@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
 import { ListGroup, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
 import helper from "../utils/helpers"
-import DisplayEvents from "./eventsList"
+import CurrentEventsList from "../components/CurrentEventsList"
 
 class Home extends React.Component{
 
@@ -10,33 +10,14 @@ class Home extends React.Component{
 		super();
 
 		this.state= {
-			show: false,
-			show2: false,
+		
 			show3: false,
 			events: []
 		}
 
 
 	}
-//--------------------------------
-//--------------------------------
-	//Show and Hide Modal Functions
 
-	  showModal = () => {
-	    this.setState({show: true});
-	  }
-
-	  hideModal =() => {
-	    this.setState({show: false});
-	  }
-
-	  showModal2 = () => {
-	    this.setState({show2: true});
-	  }
-
-	  hideModal2 =() => {
-	    this.setState({show2: false});
-	  }
 
     showModal3 = () => {
     this.setState({show3: true});
@@ -54,10 +35,10 @@ class Home extends React.Component{
 
 		helper.getEvents()
 			.then(function(response){
-				var events=this.state.events
-				events.push(response.data)
+				// var newEvents=this.state.events
+				// newEvents.push(response.data)
 					this.setState({
-						events: events
+						events: [response.data]
 					})
 				console.log(response)
 			}.bind(this));
@@ -69,7 +50,7 @@ class Home extends React.Component{
 					<Row bsClass="row">
 						<Col bsClass="col" xs={12}>
 							<PageHeader><small>Current Events</small></PageHeader>
-							<DisplayEvents userEvents={this.state.events}/>
+							<CurrentEventsList currentEvents={this.state.events}/>
 						</Col>
 					</Row>
 					<Row bsClass="row">

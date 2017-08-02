@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
 import { ListGroup, FormGroup, FormControl, ControlLabel,  } from 'react-bootstrap'
 import axios from 'axios'
-import DisplayOptions from './optionsList'
+import DisplayOptions from '../components/optionsList'
 
 class CreateNewEvent extends React.Component{
 
