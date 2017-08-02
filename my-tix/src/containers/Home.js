@@ -38,11 +38,13 @@ class Home extends React.Component{
 				// var newEvents=this.state.events
 				// newEvents.push(response.data)
 					this.setState({
-						events: [response.data]
-					})
+						events: response.data
+					});
 				console.log(response)
 			}.bind(this));
 		}
+
+
 
 	render(){
 		return(

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
 import { ListGroup, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
+// import CurrentEvents from "./currentEvents"
 
 class CurrentEvents extends React.Component{
 	constructor(){
@@ -36,10 +37,21 @@ class CurrentEvents extends React.Component{
 	//--------------------------------
 
 
+
+		  handleChange = (event) => {
+    // Here we create syntax to capture any change in text to the query terms (pre-search).
+    // See this Stack Overflow answer for more details:
+    // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
+	    var newState = {};
+	    newState[event.target.id] = event.target.value;
+	    this.setState(newState);
+  }
+
 	render(){
 		return(
-			// <ListGroup>
-			// 	<ListGroupItem key="">
+		// 	<ListGroup>
+		// 		{this.props.currentEvents.map((obj, index) =>
+		// 		<ListGroupItem key={index}>
 					<Row bsClass="row">
 						<Col bsClass="col" xs={8}>
 							<h4>Event Name</h4>
@@ -169,7 +181,8 @@ class CurrentEvents extends React.Component{
 							<Button href="" block>Customer Page</Button>
 						</Col>
 					</Row>
-			// 	</ListGroupItem>
+			//  	</ListGroupItem>
+			//  )}
 			// </ListGroup>
 
 		)

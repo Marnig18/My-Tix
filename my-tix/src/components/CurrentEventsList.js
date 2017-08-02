@@ -9,12 +9,12 @@ class CurrentEventsList extends React.Component{
 
 		// var array= this.props.currentEvents[0]
 		// 	console.log(array)
-
 		
 		this.state={
 			items: []
 		}
 	}
+
 
 
 	render(){
@@ -27,25 +27,18 @@ class CurrentEventsList extends React.Component{
 
 			return (
 				<ListGroup>		
-				{this.props.currentEvents.map((obj, index) =>
+					{this.props.currentEvents.map((obj, index) =>
 					
-					<ListGroupItem key={index}>
-						<CurrentEvents  />
-					</ListGroupItem>
+						<ListGroupItem key={index}>
+							<CurrentEvents  />
+						</ListGroupItem>
 					)}
 				
 				</ListGroup>	
 
 				)
-		
+		}
+	
 	}
 
-	
-
-
-
-	
-}
-
-
-export default CurrentEventsList
+export default CurrentEventsList;
