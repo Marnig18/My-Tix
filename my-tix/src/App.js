@@ -9,6 +9,7 @@ import { Route, Link } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'
 import helper from "./utils/helpers.js"
+import Login from "./components/login.js"
 
 
 
@@ -84,7 +85,7 @@ class App extends React.Component{
 			<Grid fluid>
 				<Row bsClass="row">
 					<Col bsClass="col" xs={4}>
-						<ListGroup class="nav nav-pills nav-stacked">
+						<ListGroup className="nav nav-pills nav-stacked">
 							<ListGroupItem><LinkContainer exact to="/home"><Button bsSize="large" block>Home</Button></LinkContainer></ListGroupItem>
 							<ListGroupItem><LinkContainer exact to="/newevent"><Button  bsSize="large" block>Create New Events</Button></LinkContainer></ListGroupItem>
 							<ListGroupItem><LinkContainer exact to= "/editUser"><Button bsSize="large" block>User Settings</Button></LinkContainer></ListGroupItem>
@@ -95,6 +96,7 @@ class App extends React.Component{
 							<Route exact path="/home" component={Home} />
 							<Route exact path="/newevent" render={(props)=><CreateNewEvent makeNewOption={this.makeNewOption} makeNewEvent={this.makeNewEvent} options={this.state.options}/>} />
 							<Route exact path="/editUser" component={Settings} />
+							
 						</div>
 					</Col>
 				</Row>
