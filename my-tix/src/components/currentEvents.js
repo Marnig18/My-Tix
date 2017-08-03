@@ -14,7 +14,8 @@ class CurrentEvents extends React.Component{
 			formEditName:"",
 			formEditStartDate: "",
 			formEditEndDate:"",
-			formEditPicture:""
+			formEditPicture:"",
+			eventID: ""
 		}
 		this.handleChange=this.handleChange.bind(this)
 		this.handleEditSubmit=this.handleEditSubmit.bind(this)
@@ -50,25 +51,35 @@ class CurrentEvents extends React.Component{
     // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
 
 	    var newState = {};
-	    newState[event.target.id] = event.target.value;
+	    newState[event.target.id] = event.target.value
 	    this.setState(newState);
+
   }
 
 			handleEditSubmit(event){
 			event.preventDefault()
-			console.log('handlesubmit called')
-			let eventId = this.props.key
-			this.props.editEvent(eventId, this.state.formEditName, this.state.formEditStartDate, this.state.formEditEndDate, this.state.formEditPicture)
+			console.log('handlesubmit called');
+
+
+			this.setState({eventID: this.props.id})
+			console.log("EventId : " + this.props.id);
+			this.props.editEvent(this.state.eventID, this.state.formEditName, this.state.formEditStartDate, this.state.formEditEndDate, this.state.formEditPicture)
 			this.setState({
 					formEditName:"",
 					formEditStartDate: "",
 					formEditEndDate:"",
-					formEditPicture:""
+					formEditPicture:"",
+					eventID: "eventID"
+
 			})
 			console.log("posted")
 		}
 
-		
+		componentDidMount(){
+			this.setState({
+				eventID: this.props.id
+			})
+		}
 
 
 

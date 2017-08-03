@@ -66,7 +66,7 @@ class App extends React.Component{
 						events: newEvent
 					})
 				console.log(response)
-			}).bind(this)
+			})
 	}
 
 
@@ -82,16 +82,15 @@ class App extends React.Component{
 
 
 	editEvent(eventId, formEditName, formEditStartDate, formEditEndDate, formEditPicture){
-		axios({
-				method: "post",
-				url: '/api/Events/' + eventId, 
-				data:{
+			var url='/api/Events/' + eventId;
+			console.log('URL: ' + eventId);
+		axios.post(url, {
 					Name: formEditName,
 					StartDate: formEditStartDate,
 					EndDate: formEditEndDate,
 					picture: formEditPicture
 				}
-			}).then(response =>{
+		).then(response =>{
 				console.log(response.data)
 				var newEvent = this.state.events
 				newEvent.push(response.data)

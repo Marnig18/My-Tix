@@ -45,7 +45,7 @@ class CreateNewEvent extends React.Component{
 	    newState[event.target.id] = event.target.value;
 	    this.setState(newState);
   }
-
+  
   handleOptionSubmit(event) {
 		event.preventDefault()
 		console.log('handlesubmit called')

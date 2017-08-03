@@ -65,7 +65,10 @@ app.post("/api/newEvent", function(req, res){
 		Event.findByIdAndUpdate({
 				"_id": req.params.id
 
-		}).exec(function(err,doc){
+		}, {$set: {Name: req.body.Name,
+							StartDate: req.body.StartDate,
+							EndDate: req.body.EndDate,
+							picture: req.body.picture}}).exec(function(err,doc){
 			if (err) {
       console.log(err);
     }
@@ -79,7 +82,6 @@ app.post("/api/newEvent", function(req, res){
 
 
 	}
-
 
 
 

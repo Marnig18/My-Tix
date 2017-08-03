@@ -6,10 +6,10 @@ const helper = {
   getEvents: function() {
     return axios.get("/api/Events");
   },
-  
+
   editEvent: function(formEditName, formEditStartDate, formEditEndDate, formEditPicture){
   	 axios({
-  	 	method: "post",
+  	 	method: "put",
   	 	url: "/api/Events/:id",
   	 	data: {
   	 		Name: formEditName,
