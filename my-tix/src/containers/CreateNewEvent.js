@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
-import { ListGroup, FormGroup, FormControl, ControlLabel,  } from 'react-bootstrap'
+import { Button, Row, Col, PageHeader, Grid, Modal } from 'react-bootstrap';
+import {  FormGroup, FormControl, ControlLabel,  } from 'react-bootstrap'
 import axios from 'axios'
 import DisplayOptions from '../components/optionsList'
 
@@ -66,6 +66,7 @@ class CreateNewEvent extends React.Component{
 			console.log('handlesubmit called')
 			// console.log(this.state)
 			this.props.makeNewEvent(this.state.newEventName, this.state.newEventStart, this.state.newEventEnd, this.state.newEventPicture, this.props.options)
+			console.log("================")
 			console.log(this.props.options)
 			this.setState({
 				newEventName: "",
@@ -76,6 +77,8 @@ class CreateNewEvent extends React.Component{
 				})
 		
 		}
+
+
 	
 
 	render(){

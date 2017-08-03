@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
-import { ListGroup, FormGroup, FormControl, ControlLabel,  } from 'react-bootstrap'
+import { ListGroupItem } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap'
 
 
 const DisplayOptions = props => {

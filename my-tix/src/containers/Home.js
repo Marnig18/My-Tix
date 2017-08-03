@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
-import { ListGroup, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 import helper from "../utils/helpers"
 import CurrentEventsList from "../components/CurrentEventsList"
 
@@ -42,7 +42,10 @@ class Home extends React.Component{
 					});
 				console.log(response)
 			}.bind(this));
+
 		}
+
+
 
 
 
@@ -52,7 +55,7 @@ class Home extends React.Component{
 					<Row bsClass="row">
 						<Col bsClass="col" xs={12}>
 							<PageHeader><small>Current Events</small></PageHeader>
-							<CurrentEventsList currentEvents={this.state.events}/>
+							<CurrentEventsList currentEvents={this.state.events} editEvent={this.props.editEvent}/>
 						</Col>
 					</Row>
 					<Row bsClass="row">

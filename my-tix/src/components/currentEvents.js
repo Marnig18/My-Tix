@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
-import { ListGroup, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
+import { Button, Row, Col,  Modal } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
 // import CurrentEvents from "./currentEvents"
+import EditOptionsList from './EditOptionsList'
 
 class CurrentEvents extends React.Component{
 	constructor(){
@@ -10,8 +11,13 @@ class CurrentEvents extends React.Component{
 		this.state ={
 			show: false,
 			show2: false,
-			events:[]
+			formEditName:"",
+			formEditStartDate: "",
+			formEditEndDate:"",
+			formEditPicture:""
 		}
+		this.handleChange=this.handleChange.bind(this)
+		this.handleEditSubmit=this.handleEditSubmit.bind(this)
 	}
 
 	//--------------------------------
@@ -34,18 +40,37 @@ class CurrentEvents extends React.Component{
 	    this.setState({show2: false});
 	  }
 	//--------------------------------
-	//--------------------------------
+	//--------
+	
 
 
-
-		  handleChange = (event) => {
+		 handleChange = (event) => {
     // Here we create syntax to capture any change in text to the query terms (pre-search).
     // See this Stack Overflow answer for more details:
     // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
+
 	    var newState = {};
 	    newState[event.target.id] = event.target.value;
 	    this.setState(newState);
   }
+
+			handleEditSubmit(event){
+			event.preventDefault()
+			console.log('handlesubmit called')
+			let eventId = this.props.key
+			this.props.editEvent(eventId, this.state.formEditName, this.state.formEditStartDate, this.state.formEditEndDate, this.state.formEditPicture)
+			this.setState({
+					formEditName:"",
+					formEditStartDate: "",
+					formEditEndDate:"",
+					formEditPicture:""
+			})
+			console.log("posted")
+		}
+
+		
+
+
 
 	render(){
 		return(
@@ -54,7 +79,7 @@ class CurrentEvents extends React.Component{
 		// 		<ListGroupItem key={index}>
 					<Row bsClass="row">
 						<Col bsClass="col" xs={8}>
-							<h4>Event Name</h4>
+							<h4>{this.props.name}</h4>
 						</Col>
 						<Col bsClass="col" xs={4}>
 							<Button onClick={this.showModal} block>Edit Event</Button>
@@ -102,63 +127,14 @@ class CurrentEvents extends React.Component{
 									            onChange={this.handleChange}/>
 									       	</Col>
 								       </FormGroup>
-								       	<ListGroup>
-								       		<ListGroupItem>
-									       		<Row bsClass="row">
-															<Col componentClass={ControlLabel} xs={4}>
-																	Option Name:
-													     </Col>
-													    <Col bsClass="col" xs={8}>
-													     	<Row bsClass="row">
-															     	 <Col componentClass={ControlLabel} xs={4}>
-															        	Name:
-															       	</Col>  
-														       		<Col xs={8}>
-														       			<FormControl type="text" value={this.state.value} placeholder="" 
-														            onChange={this.handleChange}/>
-													       			</Col>
-														       	</Row>
-														      
-								
-														       	<Row bsClass="row">
-														        	<Col componentClass={ControlLabel} xs={4}>
-														        		Price:
-														        	</Col>  
-													       			<Col xs={8}>
-													       				<FormControl type="number" value={this.state.value} placeholder="" 
-													            	onChange={this.handleChange}/>
-													       			</Col>
-												       			</Row>	
-												       			
-												       			<Row bsClas="row">
-															        <Col componentClass={ControlLabel} xs={4}>
-															        	Quantity: 
-															        </Col>  
-														       		<Col xs={8}>
-														       			<FormControl type="number" value={this.state.value} placeholder="" 
-														            onChange={this.handleChange}/>
-														       		</Col>
-												       			</Row>
-												       		
-												       			<Row bsClass="row">
-															        <Col componentClass={ControlLabel} xs={4}>
-															        	Description:
-															        </Col>  
-														       		<Col xs={8}>
-														       			<FormControl componentClass="textarea" value={this.state.value} placeholder="" 
-														            onChange={this.handleChange}/>
-														       		</Col>
-													       		</Row>	
-																	</Col>
-	
-													   	 </Row> 	
-												    	</ListGroupItem>
-											    	 </ListGroup>	
+								       	
+									       				<EditOptionsList options={this.props.options}/>
+											
 													</Modal.Body>
 													<Modal.Footer>
 														<FormGroup>
 												      <Col smOffset={2} sm={10}>
-												        <Button type="submit">
+												        <Button type="submit" onClick={this.handleEditSubmit}>
 												          Save Changes
 												        </Button>
 												      </Col>
@@ -166,7 +142,7 @@ class CurrentEvents extends React.Component{
 												   </Modal.Footer> 
 												</Form>
 										</Modal>
-							<Button block onClick={this.showModal2}>View Data</Button>
+								<Button block onClick={this.showModal2}>View Data</Button>
 								<Modal
 				          show={this.state.show2}
 				          onHide={this.hideModal2}>

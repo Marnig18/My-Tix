@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-bootstrap';
-import { ListGroup, FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
+import { ListGroupItem} from 'react-bootstrap';
+import { ListGroup, } from 'react-bootstrap'
 import CurrentEvents from "./currentEvents"
 
 class CurrentEventsList extends React.Component{
@@ -16,6 +16,7 @@ class CurrentEventsList extends React.Component{
 	}
 
 
+		
 
 	render(){
 		
@@ -27,10 +28,10 @@ class CurrentEventsList extends React.Component{
 
 			return (
 				<ListGroup>		
-					{this.props.currentEvents.map((obj, index) =>
+					{this.props.currentEvents.map(item =>
 					
-						<ListGroupItem key={index}>
-							<CurrentEvents  />
+						<ListGroupItem key={item._id}>
+							<CurrentEvents  editEvent={this.props.editEvent}  name={item.Name} options={item.Option}/>
 						</ListGroupItem>
 					)}
 				

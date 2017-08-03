@@ -5,10 +5,10 @@ import { ListGroup } from 'react-bootstrap'
 import Home from "./containers/Home"
 import CreateNewEvent from "./containers/CreateNewEvent"
 import Settings from "./containers/Settings"
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'
-import helper from "./utils/helpers.js"
+// import helper from "./utils/helpers.js"
 
 
 
@@ -24,6 +24,7 @@ class App extends React.Component{
 		}
 		this.makeNewOption = this.makeNewOption.bind(this)
 		this.makeNewEvent = this.makeNewEvent.bind(this)
+		this.editEvent = this.editEvent.bind(this)
 	}
 
 	makeNewOption(newOptionName, newOptionPrice, newOptionQuantity, newOptionDescription){
@@ -64,9 +65,43 @@ class App extends React.Component{
 
 						events: newEvent
 					})
-			})
+				console.log(response)
+			}).bind(this)
 	}
 
+
+	// editEvent()
+	// 	.then(function(response){
+
+	// 		this.setState({
+	// 			events: response.data
+	// 		})
+
+	// 	})
+
+
+
+	editEvent(eventId, formEditName, formEditStartDate, formEditEndDate, formEditPicture){
+		axios({
+				method: "post",
+				url: '/api/Events/' + eventId, 
+				data:{
+					Name: formEditName,
+					StartDate: formEditStartDate,
+					EndDate: formEditEndDate,
+					picture: formEditPicture
+				}
+			}).then(response =>{
+				console.log(response.data)
+				var newEvent = this.state.events
+				newEvent.push(response.data)
+				console.log(response.data)
+				this.setState({
+					events: newEvent
+				})
+				console.log("POSTED")
+			})
+	}
 
 
 
@@ -92,7 +127,7 @@ class App extends React.Component{
 					</Col>	
 					<Col xs={8}>
 						<div id="reactComponents">
-							<Route exact path="/home" component={Home} />
+							<Route exact path="/home" render={(props)=><Home editEvent={this.editEvent}/>}/>
 							<Route exact path="/newevent" render={(props)=><CreateNewEvent makeNewOption={this.makeNewOption} makeNewEvent={this.makeNewEvent} options={this.state.options}/>} />
 							<Route exact path="/editUser" component={Settings} />
 						</div>

@@ -60,6 +60,21 @@ app.post("/api/newEvent", function(req, res){
 	})
 
 
+	app.post("/api/Events/:id", function(req,res){
+		console.log(req)
+		Event.findByIdAndUpdate({
+				"_id": req.params.id
+
+		}).exec(function(err,doc){
+			if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(doc);
+    }
+		})
+	})
+
 	
 
 

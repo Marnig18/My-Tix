@@ -9,11 +9,23 @@ class Settings extends React.Component{
 		super();
 			this.state= {
 			show: false,
-			name: '',
-			email: ','
+			userName: '',
+			Email: ''
+
 			
 		}
 	}
+
+
+		 handleChange = (event) => {
+    // Here we create syntax to capture any change in text to the query terms (pre-search).
+    // See this Stack Overflow answer for more details:
+    // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
+
+	    var newState = {};
+	    newState[event.target.id] = event.target.value;
+	    this.setState(newState);
+  }
 
 
 	render(){
@@ -31,7 +43,7 @@ class Settings extends React.Component{
 									<ControlLabel>Email</ControlLabel>
 									<FormControl type="email" value={this.state.value} onChange={this.handleChange} placeholder="Enter Name"/>
 								</FormGroup>
-								<FormGroup controlId="userName"> 
+								<FormGroup controlId="userPhone"> 
 									<ControlLabel>Phone</ControlLabel>
 									<FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter Name"/>
 								</FormGroup>
