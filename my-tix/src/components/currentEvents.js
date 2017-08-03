@@ -15,6 +15,7 @@ class CurrentEvents extends React.Component{
 			formEditStartDate: "",
 			formEditEndDate:"",
 			formEditPicture:"",
+			formEditLocation:"",
 			eventID: ""
 		}
 		this.handleChange=this.handleChange.bind(this)
@@ -69,6 +70,7 @@ class CurrentEvents extends React.Component{
 					formEditStartDate: "",
 					formEditEndDate:"",
 					formEditPicture:"",
+					formEditLocation: "",
 					eventID: "eventID"
 
 			})
@@ -126,6 +128,15 @@ class CurrentEvents extends React.Component{
 									        </Col>  
 									       	<Col xs={10}>
 									       		<FormControl type="date" value={this.state.value} placeholder="" 
+									            onChange={this.handleChange}/>
+									       	</Col>
+								       </FormGroup>
+								       <FormGroup controlId="formEditLocation">
+													<Col componentClass={ControlLabel} xs={2}>
+														End Date
+									        </Col>  
+									       	<Col xs={10}>
+									       		<FormControl type="date" value={this.state.value} placeholder="Address" 
 									            onChange={this.handleChange}/>
 									       	</Col>
 								       </FormGroup>

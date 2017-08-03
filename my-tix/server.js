@@ -16,6 +16,10 @@ var mongoose = require("mongoose");
 var logger = require("morgan");
 var session = require("express-session");
 
+
+
+
+
 //passport
 var passport = require("./config/passport");
 
@@ -77,6 +81,7 @@ db.once('open', () => {
 
 require("./routes/api-routes")(app);
 require("./routes/login-routes")(app);
+require("./routes/customer-api-routes")(app);
 // Starting our express server
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);

@@ -7,17 +7,5 @@ const helper = {
     return axios.get("/api/Events");
   },
 
-  editEvent: function(formEditName, formEditStartDate, formEditEndDate, formEditPicture){
-  	 axios({
-  	 	method: "put",
-  	 	url: "/api/Events/:id",
-  	 	data: {
-  	 		Name: formEditName,
-  	 		StartDate: formEditStartDate,
-  	 		EndDate: formEditEndDate,
-  	 		picture: formEditPicture
-  	 	}
-  	 })
-  }
 }
   export default helper;

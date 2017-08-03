@@ -1,0 +1,71 @@
+var customerController = require("../controllers/customer");
+var Customer = require("../models/Customer"); 
+var Event = require("../models/Event");
+
+module.exports = function(app) {
+
+  app.get("/events/:event_id", function(req, res) {
+    console.log("message hit")
+    var query;
+    if (req.params.event_id) {
+      query = req.params.event_id;
+      console.log(query)
+    }
+    customerController.get(query, function(err, data) {
+      if (err) {
+        console.log(err)
+      }
+      else {
+        res.json(data)
+      }
+    });
+  });
+
+ // app.post("/api/customer", function(req, res) {
+    
+ //    var entry = new Customer(req.body);
+
+ //    entry.save(function(err, doc) {
+ //      if (err) {
+ //        console.log(err)
+ //      }
+ //      else {
+ //        console.log(doc)
+ //      }
+ //      res.json(data);
+ //    });
+ //  });
+
+ // Create a new note or replace an existing note
+  app.post("/api/customer/:id", function(req, res) {
+    // Create a new note and pass the req.body to the entry
+    var newCustomer = new Customer(req.body);
+
+    // And save the new note the db
+    newCustomer.save(function(error, doc) {
+      // Log any errors
+      console.log(doc)
+
+      if (error) {
+        console.log(error);
+      }
+      // Otherwise
+      else {
+        // Use the article id to find and update it's note
+        Event.findOneAndUpdate({ "_id": req.params.id }, { $push: { "Customer": doc }}, { new: true })
+        // Execute the above query
+        .exec(function(err, doc) {
+          // Log any errors
+          if (err) {
+            console.log(err);
+          }
+          else {
+
+            res.json(doc)
+          }
+        });
+      }
+    });
+  });
+
+}

@@ -8,7 +8,7 @@ import Settings from "./containers/Settings"
 import { Route } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'
-// import helper from "./utils/helpers.js"
+import helper from "./utils/helpers.js"
 
 
 
@@ -27,12 +27,13 @@ class App extends React.Component{
 		this.editEvent = this.editEvent.bind(this)
 	}
 
-	makeNewOption(newOptionName, newOptionPrice, newOptionQuantity, newOptionDescription){
+	makeNewOption(newOptionName, newOptionPrice, newOptionQuantity,newOptionLocation, newOptionDescription){
 		axios
 			.post('/api/newOption', {
 				optionName: newOptionName,
 				optionPrice: newOptionPrice,
 				optionQuantity: newOptionQuantity,
+				optionLocation: newOptionLocation,
 				optionDescription: newOptionDescription
 			})
 			.then(response => {
@@ -47,12 +48,13 @@ class App extends React.Component{
 	})
 }
 
-	makeNewEvent(newEventName, newEventStart, newEventEnd, newEventPicture, options){
+	makeNewEvent(newEventName, newEventStart, newEventEnd, newEventLocation, newEventPicture, options){
 		axios
 			.post('/api/newEvent', {
 					Name: newEventName,
 					StartDate: newEventStart,
 					EndDate: newEventEnd,
+					location: newEventLocation,
 					picture: newEventPicture,
 					Option: this.state.options
 					
@@ -81,13 +83,14 @@ class App extends React.Component{
 
 
 
-	editEvent(eventId, formEditName, formEditStartDate, formEditEndDate, formEditPicture){
+	editEvent(eventId, formEditName, formEditStartDate, formEditEndDate, formEditLocation, formEditPicture){
 			var url='/api/Events/' + eventId;
 			console.log('URL: ' + eventId);
 		axios.post(url, {
 					Name: formEditName,
 					StartDate: formEditStartDate,
 					EndDate: formEditEndDate,
+					location: formEditLocation,
 					picture: formEditPicture
 				}
 		).then(response =>{
@@ -126,9 +129,9 @@ class App extends React.Component{
 					</Col>	
 					<Col xs={8}>
 						<div id="reactComponents">
-							<Route exact path="/home" render={(props)=><Home editEvent={this.editEvent}/>}/>
+							<Home  editEvent={this.editEvent}/>}/>
 							<Route exact path="/newevent" render={(props)=><CreateNewEvent makeNewOption={this.makeNewOption} makeNewEvent={this.makeNewEvent} options={this.state.options}/>} />
-							<Route exact path="/editUser" component={Settings} />
+							<Route exact path="/home/editUser" component={Settings} />
 						</div>
 					</Col>
 				</Row>

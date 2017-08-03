@@ -6,34 +6,28 @@ var Schema = mongoose.Schema;
 // Create the Note schema
 var CustomerSchema = new Schema({
   // Just a string
+  event: {
+    type: String
+  },
+
+  quantitySelect: {
+    type: Number
+  },
+
+  option: {
+    type: String
+  },
+
+  customerName: {
+    type: String
+  },
+
+  customerEmail: {
+    type: String
+  },
+
   barcode: {
-    type: Number,
-    required: true
-  },
-  // Just a string
-  name: {
-    type: String,
-    required: true
-  }, 
-
-  userVenmoEmail: {
-  	type: String,
-  	required: true
-  },
-
-  optionChosen: {
-  	optionName: {
-  		type: String,
-  		required: true
-  	},
-  	optionPrice: {
-  		type: Number,
-  		required: true
-  	},
-  	quantitySelect: {
-  		type: Number,
-  		required: true
-  	}
+    type: String
   }
 
 });

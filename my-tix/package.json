@@ -8,8 +8,10 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "concurrently": "^3.5.0",
+    "dom-to-image": "^2.5.2",
     "express": "^4.15.3",
     "express-session": "^1.15.4",
+    "jsbarcode": "^3.8.0",
     "mongoose": "^4.11.4",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
@@ -34,9 +36,3 @@
   },
   "proxy": "http://localhost:3001"
 }
-
-
-
-
-
-

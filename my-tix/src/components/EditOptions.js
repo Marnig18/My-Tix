@@ -44,7 +44,7 @@ render(){
 						      
 
 						       	<Row bsClass="row">
-						       	<FormGroup controlId="optionPrice">
+						       	<FormGroup controlId="formEditOptionPrice">
 						        	<Col componentClass={ControlLabel} xs={4}>
 						        		Price:
 						        	</Col>  
@@ -56,7 +56,7 @@ render(){
 				       			</Row>	
 				       			
 				       			<Row bsClas="row">
-				       			<FormGroup controlId="optionQuantity">
+				       			<FormGroup controlId="formEditOptionQuantity">
 							        <Col componentClass={ControlLabel} xs={4}>
 							        	Quantity: 
 							        </Col>  
@@ -66,17 +66,28 @@ render(){
 						       		</Col>
 						       	</FormGroup>	
 				       			</Row>
+				       			<Row bsClass="row">
+					       			<FormGroup controlId="formEditOptionLocation">
+								        <Col componentClass={ControlLabel} xs={4}>
+								        	Description:
+								        </Col>  
+							       		<Col xs={8}>
+							       			<FormControl componentClass="textarea" value={this.state.value} placeholder="" 
+							            onChange={this.handleChange}/>
+							       		</Col>
+							       	</FormGroup>
+					       		</Row>	
 				       		
 				       			<Row bsClass="row">
-				       			<FormGroup controlId="optionDescription">
-							        <Col componentClass={ControlLabel} xs={4}>
-							        	Description:
-							        </Col>  
-						       		<Col xs={8}>
-						       			<FormControl componentClass="textarea" value={this.state.value} placeholder="" 
-						            onChange={this.handleChange}/>
-						       		</Col>
-						       	</FormGroup>
+					       			<FormGroup controlId="formEditOptionDescription">
+								        <Col componentClass={ControlLabel} xs={4}>
+								        	Description:
+								        </Col>  
+							       		<Col xs={8}>
+							       			<FormControl componentClass="textarea" value={this.state.value} placeholder="" 
+							            onChange={this.handleChange}/>
+							       		</Col>
+							       	</FormGroup>
 					       		</Row>	
 									</Col>
 									<Button type="submit" onClick={this.handleOptionEditSubmit}  bsStyle="primary">Save changes</Button>

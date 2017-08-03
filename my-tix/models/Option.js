@@ -19,6 +19,11 @@ var OptionSchema = new Schema({
     type: Number,
     required: true
   },
+  
+  optionLocation: {
+    type: String,
+  
+  },
 
   soldOut: {
     type: Boolean

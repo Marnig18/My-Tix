@@ -14,6 +14,7 @@ class CreateNewEvent extends React.Component{
 			newEventName: "",
 			newEventStart: "",
 			newEventEnd: "",
+			newEventLocation: "",
 			newEventPicture: "",
 			newOptionName: "",
 			newOptionPrice: "",
@@ -55,8 +56,8 @@ class CreateNewEvent extends React.Component{
 			newOptionName: "",
 			newOptionPrice: "",
 			newOptionQuantity: "",
+			newOptionLocation: "",
 			newOptionDescription: ""
-	
 			})
 			this.hideModal();
 		}
@@ -73,6 +74,7 @@ class CreateNewEvent extends React.Component{
 				newEventStart: "",
 				newEventEnd: "",
 				newEventPicture: "",
+				newEventLocation: "",
 				options: []
 				})
 		
@@ -100,6 +102,10 @@ class CreateNewEvent extends React.Component{
 									<ControlLabel>End Date</ControlLabel>
 									<FormControl type="date" value={this.state.value} onChange={this.handleChange} placeholder="Enter Name"/>
 								</FormGroup>
+								<FormGroup controlId="newEventLocation"> 
+									<ControlLabel>Location</ControlLabel>
+									<FormControl type="date" value={this.state.value} onChange={this.handleChange} placeholder="Address"/>
+								</FormGroup>
 								<FormGroup controlId="newEventPicture"> 
 									<ControlLabel>Picture</ControlLabel>
 									<FormControl type="file" value={this.state.value} onChange={this.handleChange} />
@@ -123,6 +129,10 @@ class CreateNewEvent extends React.Component{
 											<FormGroup controlId="newOptionQuantity"> 
 												<ControlLabel>Quantity of Tickets</ControlLabel>
 												<FormControl type="integer" value={this.state.newOptionQuantity} onChange={this.handleChange} placeholder=""/>
+											</FormGroup>
+											<FormGroup controlId="newOptionLocation"> 
+												<ControlLabel>Location</ControlLabel>
+												<FormControl type="integer" value={this.state.newOptionQuantity} onChange={this.handleChange} placeholder="Address"/>
 											</FormGroup>
 											<FormGroup controlId="newOptionDescription"> 
 												<ControlLabel>Description</ControlLabel>

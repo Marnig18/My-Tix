@@ -30,6 +30,11 @@ var EventSchema = new Schema({
     type: String,
   },
 
+  location:{
+    type: String,
+    required: true
+  },
+
   venderVenmoEmail: {
   	type: String, 
   	// required: true
