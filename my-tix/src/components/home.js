@@ -17,30 +17,23 @@ class Home extends React.Component{
 		}
 	}
 
-	handleChange = event => {
-		this.setState({
-			[event.target.id]: event.target.value
+	handleScan = event => {
+	if(event.keyCode === 13)
+	{
+		document.getElementById('barcode').value = '';
+		console.log("This.state.barcode " + this.state.barcode);
+
+		axios
+		.get('/api/barcode', {
+			params: {
+				barcode: this.state.barcode
+			}
+		})
+		.then(response => {
+			alert(response.data)
 		})
 	}
-
-		handleScan = event => {
-		if(event.keyCode === 13)
-		{
-			document.getElementById('barcode').value = '';
-			console.log("This.state.barcode " + this.state.barcode);
-
-			axios
-			.get('/api/barcode', {
-				params: {
-					barcode: this.state.barcode
-				}
-			})
-			.then(response => {
-				console.log(response.data)
-				alert('Valid ticket. Enjoy the show.')
-			})
-		}
-	}---
+}
 //--------------------------------
 	//Show and Hide Modal Functions
 
