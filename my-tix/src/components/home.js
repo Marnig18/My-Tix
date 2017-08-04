@@ -17,146 +17,30 @@ class Home extends React.Component{
 		}
 	}
 
-drawGraph = event => {
-	console.log("Hi");
-// 	var sketchProc = function(processingInstance) {
-//   with (processingInstance) {
-//     size(800, 600);
-//     frameRate(30);	
-	
-        
-// // ProgramCodeGoesHere
-// 	// Bar Graph
-// 	// Variable Declarations
-// 	//for(var i in options) y = optionPrice x numberBought
-// 	var revenue = [1800, 2500];
-// 	//for(var i in options) x = options[i]
-// 	var items = ["Option1, Option2"];
-// 	background(0,0,0);	
-// 	var x = 10;
-// 	var z = revenue.reduce(function(a, b) {
-// 	return Math.max(a, b);
-// 	});
-// 	var maxRev = z;
-
-// 	var revYSpacing = maxRev/10;
-
-// 	var spacing = 80;
-// 	width = 25;
-// 	textSize(20);
-// 	fill(0, 50, 255);
-// 	ctx.font="bold 30px Arial";
-//   text("Profit Per Event", 280, 50);
-//   fill(255, 255, 255);
-//   textSize(12);
-//   fill(0, 255, 0);
-// 	text("$", 10, 300);
-// 	fill(255, 255, 255);
-// 	stroke(255, 255, 255);
-// 	line(80, 80, 80, 550);
-// 	line(80, 550, 700, 550);
-// 	var yLabels = [""];
-// 	for(var i = 0; i<10; i++){
-// 		yLabels.push(maxRev);
-// 		maxRev -= revYSpacing;
-// 	}
-// 	var y = 0;
-
-// 	for(var i in yLabels){
-// 		text(yLabels[i], 50, y);
-// 		y+=50;
-// 	}
-// 	// text.rotate(-Math.PI()/2);
-// 	for(var key in revenue){
-// 		var height = revenue[key];
-// 		fill(255, 255, 0);
-// 		rect(x + spacing, 550-height, x+width, height);
-// 		fill(250, 250, 250);
-// 		text(items[key], spacing, 580);
-// 		spacing+=100;
-// 	}
-
-// 	// Arc Graph
-// 	var x2 = canvas.width / 1.25;
-//   var y2 = canvas.height / 3.5;
-//   var radius = 75;
-//   var startAngle = (0 + 1.5) * Math.PI;
-//   var endAngle = (2 + 1.5) * Math.PI;
-//   var counterClockwise = false;
-//   ctx.beginPath();
-//   ctx.arc(x2, y2, radius, startAngle, endAngle, counterClockwise);
-//   ctx.lineWidth = 15;
-//   // line color
-//   ctx.strokeStyle = 'white';
-//   ctx.stroke();
-
-//   // Arc data
-//   var EventsSold = 30;
-//   var totalEvents = 50;
-//   var EventPercent = EventsSold / totalEvents;
-//   var EventArc = (EventPercent * 2 + 1.5) * Math.PI;
-//   ctx.beginPath();
-//   ctx.arc(x2, y2, radius, startAngle, EventArc, counterClockwise);
-//   ctx.lineWidth = 15;
-//   // Arc color
-//   ctx.strokeStyle = 'green';
-//   ctx.stroke();
-
-//   // Arc Text Labels
-//   text("% Ticket Sales", (canvas.width/1.68 + 100), (canvas.height/8))
-//   ctx.font="30px Arial";
-//   text(EventPercent * 100, (canvas.width/1.25 - 20), (canvas.height/3.5 + 10))
-//   }};
-//   // Get the canvas that Processing-js will use
-
-//   var canvas = document.getElementById("mycanvas");
-// 	var ctx = canvas.getContext("2d");
-//   // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
-
-//   var processingInstance = new Processing(canvas, sketchProc);
-}
-
 	handleChange = event => {
 		this.setState({
 			[event.target.id]: event.target.value
 		})
 	}
 
-	handleScan = event => {
-		// db.customer.findOne{
-		// 	{"barcode": this.state.barcode}
-		// }
-		// db.customer.findOneAndUpdate(
-	 //    { "barcode" : this.state.barcode },
-	 //    { $set: 
-	 //    	{ 
-	 //    		"attended": true,
-	 //    		 "valid": false
-	 //    	}
-	 //    }
-		// )
+		handleScan = event => {
 		if(event.keyCode === 13)
 		{
-
-			alert('Valid ticket. Enjoy the show.')
 			document.getElementById('barcode').value = '';
 			console.log("This.state.barcode " + this.state.barcode);
 
 			axios
 			.get('/api/barcode', {
-				barcode: this.state.barcode,
+				params: {
+					barcode: this.state.barcode
+				}
 			})
 			.then(response => {
 				console.log(response.data)
-				
+				alert('Valid ticket. Enjoy the show.')
+			})
 		}
-		)}
-		// this.props.makeRequest(
-		// 	this.state.barcode
-		// )
-
-	}
-//--------------------------------
+	}---
 //--------------------------------
 	//Show and Hide Modal Functions
 
