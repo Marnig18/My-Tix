@@ -59,18 +59,37 @@ app.post("/api/newEvent", function(req, res){
 		})
 	})
 
-	app.get("/api/barcode", function(req, res){
-		console.log("Barcode API Get");
-		// Event.find({}).exec(function(err, doc){
+app.get("/api/barcode", function(req, res){
+		console.log("In Barcode API Get Request");
 
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   else {
-  //     res.send(doc);
-  //   }
-		// })
-	})
+	  const barcode = req.query.barcode;
+	  if(!barcode) return res.status(400).json({message:'"barcode" is required'})
+
+	  // Is it in the database, if so run this function	
+		let onFindComplete = (err,doc)=>{
+			if(err || !doc) {
+				let errMsg = (err && err.message ? err.message : 'No customer found with that bar code :' + barcode)
+				console.log(errMsg)
+				
+				return res.status(400).json({message:errMsg})
+			}
+			if(!doc.attended){
+				doc.attended = true;
+				doc.save((err,saveResponse)=>{
+					
+					if(err) {
+						console.log('Attended flag could not be changed to true')
+					}
+
+					return res.status(200).json({message: 'Enjoy the show'}) 
+				})
+			} else {
+				return res.status(400).json({message: 'Ticket is not valid'}) 
+			}
+
+
+		}
+		Customer.findOne({barcode}).exec(onFindComplete)
 
 
 	
