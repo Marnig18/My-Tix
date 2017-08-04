@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Row, Col,  Modal } from 'react-bootstrap';
 import { FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
+import {LinkContainer} from "react-router-bootstrap"
+import {Route} from 'react-router-dom'
 // import CurrentEvents from "./currentEvents"
 import EditOptionsList from './EditOptionsList'
 
@@ -176,7 +178,7 @@ class CurrentEvents extends React.Component{
 										<Button onClick={this.hideModal2}>Close</Button>
 									</Modal.Footer>	
 								</Modal>
-							<Button href="" block>Customer Page</Button>
+							<LinkContainer exact to="/home/events/:id"><Button block>Customer Page</Button></LinkContainer>
 						</Col>
 					</Row>
 			//  	</ListGroupItem>
