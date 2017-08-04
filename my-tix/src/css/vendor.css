@@ -1,0 +1,33 @@
+#header{
+	padding: 40px 0;
+	border: 1px solid #000000;
+	text-align: center;
+
+}
+
+
+li{
+	padding: 60px 20px;
+	border: 1px solid #000000;
+	background-color: lightblue; 
+	text-align: center;
+	margin: 0;
+	list-style: none;
+}
+
+#reactComponents{
+
+	height: 440px;
+	width: 100%;
+}
+
+
+
+/*			  	<ListGroup>
+							  		<ListGroupItem>
+							  			<h4>Option Name</h4>
+							  			<p>Price:</p>
+							  			<p>Quantity:</p>
+							  			<p>Description</p>
+							  		</ListGroupItem>
+							  	</ListGroup> */
