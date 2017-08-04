@@ -10,13 +10,51 @@ class EditOptions extends React.Component{
 		this.state ={
 			show: false,
 			show2: false,
-			formEditName:"",
-			formEditStartDate: "",
-			formEditEndDate:"",
-			formEditPicture:""
+			formEditOptionName: "",
+			formEditOptionPrice: "",
+			formEditOptionQuantity: "",
+			formEditOptionLocation: "",
+			formEditOptionDescription: "",
+			optionID: ""
+		}
+		this.handleChange=this.handleChange.bind(this)
+		this.handleOptionEditSubmit=this.handleOptionEditSubmit.bind(this)
+	}
+
+	handleChange(event){
+		var newState = {};
+    newState[event.target.id] = event.target.value
+    this.setState(newState);
+	}
+
+	handleOptionEditSubmit(event){
+		event.preventDefault()
+		console.log('handlesubmit called');
+
+		var optionID = this.props.id
+		this.setState({optionID: optionID})
+		this.props.editOption(this.state.optionID, this.state.formEditOptionName, this.state.formEditOptionPrice, this.state.formEditOptionQuantity, this.state.formEditOptionLocation, this.state.formEditOptionDescription)
+		console.log(this.state.optionID)
+		this.setState({
+				formEditOptionName:"",
+				formEditOptionPrice: "",
+				formEditOptionQuantity:"",
+				formEditOptionLocation:"",
+				formEditOptionDescription: "",
+				optionID: ""
+
+			})
+			console.log("posted")
 		}
 
-	}
+
+		componentDidMount(){
+			this.setState({
+				optionID: this.props.id
+			})
+		}
+
+
 
 											
 
@@ -31,7 +69,7 @@ render(){
 					     </Col>
 					    <Col bsClass="col" xs={8}>
 					     		<Row bsClass="row">
-					     			<FormGroup controlId="optionName">
+					     			<FormGroup controlId="formEditOptionName">
 							     	 <Col componentClass={ControlLabel} xs={4}>
 							        	Name:
 							       	</Col>  
@@ -69,7 +107,7 @@ render(){
 				       			<Row bsClass="row">
 					       			<FormGroup controlId="formEditOptionLocation">
 								        <Col componentClass={ControlLabel} xs={4}>
-								        	Description:
+								        	Location:
 								        </Col>  
 							       		<Col xs={8}>
 							       			<FormControl componentClass="textarea" value={this.state.value} placeholder="" 

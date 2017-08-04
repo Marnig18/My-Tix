@@ -11,7 +11,7 @@ import Settings from './containers/Settings'
 ReactDOM.render(
 <BrowserRouter>
 		<Switch>
-			<Route exact path="/home/" component={App} />
+			<Route exact path="/home" component={App} />
 			<Route exact path="/home/events/:id" component={Event} />
 	</Switch>
 </BrowserRouter>		

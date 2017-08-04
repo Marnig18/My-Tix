@@ -87,7 +87,7 @@ class Purchase extends React.Component{
         })
       })
 
-      // this.props.setView(this.state.number);
+      this.props.setView(this.state.number);
     }
   }
  

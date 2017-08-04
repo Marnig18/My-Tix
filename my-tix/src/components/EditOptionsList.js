@@ -29,7 +29,7 @@ class EditOptionsList extends React.Component{
 					{this.props.options.map(item =>
 				
 						<ListGroupItem key={item._id}>
-							<EditOptions  editEvent={this.props.editEvent} name={item.optionName} />
+							<EditOptions  editEvent={this.props.editEvent} name={item.optionName} id={item._id} editOption={this.props.editOption}/>
 						</ListGroupItem>
 			
 					)}

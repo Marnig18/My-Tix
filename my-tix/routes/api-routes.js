@@ -78,6 +78,25 @@ app.post("/api/newEvent", function(req, res){
 		})
 	})
 
+	app.post("/api/Option/:id", function(req, res){
+		Option.findByIdAndUpdate({
+			"_id": req.params.id
+		}, {$set: 
+			{optionName: req.body.optionName,
+				optionPrice: req.body.optionPrice,
+				optionQuantity: req.body.optionQuantity,
+				optionLocatin: req.body.optionLocation,
+				optionDescription: req.body.optionDescription
+		}}).exec(function(err, doc){
+			if (err) {
+      console.log(err);
+    	}
+    	else {
+      res.send(doc);
+    	}
+		})
+	})
+
 	
 
 

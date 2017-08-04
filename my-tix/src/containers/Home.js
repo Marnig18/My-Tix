@@ -55,7 +55,7 @@ class Home extends React.Component{
 					<Row bsClass="row">
 						<Col bsClass="col" xs={12}>
 							<PageHeader><small>Current Events</small></PageHeader>
-							<CurrentEventsList currentEvents={this.state.events} editEvent={this.props.editEvent}/>
+							<CurrentEventsList currentEvents={this.state.events} editEvent={this.props.editEvent} editOption={this.props.editOption}/>
 						</Col>
 					</Row>
 					<Row bsClass="row">

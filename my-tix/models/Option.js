@@ -16,8 +16,8 @@ var OptionSchema = new Schema({
   },
 
   optionPrice: {
-    type: Number,
-    required: true
+    type: String
+   
   },
   
   optionLocation: {

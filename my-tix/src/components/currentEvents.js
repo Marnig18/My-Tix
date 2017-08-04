@@ -71,7 +71,7 @@ class CurrentEvents extends React.Component{
 					formEditEndDate:"",
 					formEditPicture:"",
 					formEditLocation: "",
-					eventID: "eventID"
+					eventID: ""
 
 			})
 			console.log("posted")
@@ -150,7 +150,7 @@ class CurrentEvents extends React.Component{
 									       	</Col>
 								       </FormGroup>
 								       	
-									       				<EditOptionsList options={this.props.options}/>
+									       				<EditOptionsList options={this.props.options} editOption={this.props.editOption}/>
 											
 													</Modal.Body>
 													<Modal.Footer>
