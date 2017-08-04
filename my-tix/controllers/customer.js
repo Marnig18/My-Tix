@@ -4,7 +4,7 @@ var Event = require("../models/Event");
 module.exports = {
 	get: function(data, cb) {
 		Event.find({
-			_eventId: data._id 
+			"_id": data._id 
 		}, cb); 
 	}, //end get
 

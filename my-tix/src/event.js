@@ -16,15 +16,23 @@ class Event extends React.Component{
 		}
 	}; 
 
-	componentWillMount = () => {
-		axios.get("/events/:event_id")
-		.then(response => {
-			console.log(response.data)
+	componentDidMount() {
+		var pathname = this.props.location.pathname
+		console.log(pathname)
+		var pathnameString = pathname.substring(8)
+		console.log(pathnameString)
+
+	
+
+		axios.get("/events/" + pathnameString)
+		.then(function(response){
+			console.log(response)
+
 			this.setState({
-				eventSelect: response.data[0]
-			})
-			console.log(this.state.eventSelect.Option)
-		})
+				eventSelect: response.data
+			});
+			console.log(response)
+		}.bind(this));
 	} 
 
 	setView = (number) => {
@@ -39,7 +47,7 @@ class Event extends React.Component{
 
 		if (view === 0) {
 			viewContainer = <Main 
-	      poster={this.state.eventSelect.picture}
+	      // poster={this.state.eventSelect.picture}
 	      name={this.state.eventSelect.Name} 
 	      desc={this.state.eventSelect.description}
 	      location={this.state.eventSelect.location}
@@ -56,7 +64,7 @@ class Event extends React.Component{
 				_id={this.state.eventSelect._id}
 			/>
 		}
-		else {
+		else if(view === 2){
 			viewContainer = <Ticket />
 		}
 
@@ -69,7 +77,7 @@ class Event extends React.Component{
 	              <h2 id="siteName">MyTix</h2>
 	            </div>
 	            <div className="col-sm-5">
-	              <img src="Logo3.jpg" id="tixLogo" alt="logo" />
+
 	            </div>
 	          </div>
 	        </div>

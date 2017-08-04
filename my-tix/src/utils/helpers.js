@@ -6,6 +6,8 @@ const helper = {
   getEvents: function() {
     return axios.get("/api/Events");
   },
-
+  getOneEvent: function(id){
+  	return axios.get("/events/" + id)
+  }
 }
   export default helper;

@@ -4,19 +4,16 @@ var Event = require("../models/Event");
 
 module.exports = function(app) {
 
-  app.get("/events/:event_id", function(req, res) {
+  app.get("/events/:id", function(req, res) {
     console.log("message hit")
-    var query;
-    if (req.params.event_id) {
-      query = req.params.event_id;
-      console.log(query)
-    }
-    customerController.get(query, function(err, data) {
+   Event.findOne({
+    "_id": req.params.id
+   }).exec(function(err, doc){ 
       if (err) {
         console.log(err)
       }
       else {
-        res.json(data)
+        res.json(doc)
       }
     });
   });

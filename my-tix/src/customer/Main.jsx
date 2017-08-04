@@ -28,7 +28,7 @@ class Main extends React.Component{
             <div className="info">
               <div className="media">
                 <div className="media-left">
-                  <img className="media-object" id="posterEvent" src={this.props.poster} alt="event" />
+                  <img className="media-object" id="posterEvent" src={this.props.picture} alt="event" />
                 </div>
                 <div className="media-body" id="mediaStuff">
                   <h4 className= "media-heading eventHeading" id="mediaContent">{this.props.name}</h4>
