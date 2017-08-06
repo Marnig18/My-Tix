@@ -21,7 +21,13 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-
+    <div id="dataArea">
+    	<div class="whiteText" id="dataBkgd">Detailed Event Data</div>
+    	<form id="dataForm">
+	    	<input type="text" placeholder="Enter Event Name" id="inputForData">
+				<button id="eventGraph">Event Data</button>
+			</form>
+    </div>
 <!-- 		<form>
 		<input type="text" name="option" id="option" placeholder="Enter option">
 		<button type="submit" text="Choose Option" id="chooseOption">Choose Option</button>
@@ -31,25 +37,51 @@
     <!--This draws the Canvas on the webpage -->
       <canvas id="mycanvas"></canvas> 
     </p>
- 
+
  <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
  <script>
   // Canvas script
-  var sketchProc = function(processingInstance) {
-  with (processingInstance) {
-    size(800, 600);
-    frameRate(30);	
+
 	// Bar Graph
-	// Variable Declarations
-	//for(var i in options) optionRevenue = optionPrice x numberBought; revenue.push(optionRevenue)
-	var revenue = [1800, 2500];
-	//for(var i in options) item = options[i]; items.push(item)
-	var items = ["Option1", "Option2"];
+	$(document).on('click', '#eventGraph', function(event){
+		var revenue = [];
+    var items = [];
+    var numberBought = 0;
+    var totalTickets = 0;
+		event.preventDefault();
+		var eventSearch = $('#inputForData').val();
+		$('#inputForData').val('');
+		console.log("Clicked");
+
+		$.ajax({
+		url: "/api/eventSearch/" + eventSearch,
+		method:"GET"
+}).done(function(result){
+		  console.log(result[0]);
+		  for(var i in result[0].Option){
+		  	console.log(result[0].Option[i].optionName);
+		  	console.log(result[0].Option[i].optionPrice);
+		  	console.log(result[0].Option[i].optionQuantity);
+		  	items.push(result[0].Option[i].optionName);
+		  	revenue.push(result[0].Option[i].optionPrice * result[0].Option[i].optionQuantity);
+		  	numberBought += result[0].Option[i].numberBought;
+		  	totalTickets += result[0].Option[i].optionQuantity;
+		  	console.log("In loop");
+		  	console.log(totalTickets);
+		  	// revenue.push should be optionPrice * numberBought
+		  }
+	console.log("Out of loop ")
+	console.log(totalTickets);
+	var sketchProc = function(processingInstance) {
+  with (processingInstance) {
+    size(1000, 650);
+    frameRate(30);	
+
 	background(0, 0, 0);	
 	var x = 10;
 	// Grab maximum revenue value for setting y-axis Max
 	var z = revenue.reduce(function(a, b) {
-	return Math.max(a, b);
+		return Math.max(a, b);
 	});
 	var maxRev = z;
 	var labelRev = maxRev;
@@ -62,7 +94,7 @@
 	textSize(20);
 	fill(255, 255, 255);
 	ctx.font="bold 30px Arial";
-  text("Profit Per Event", 280, 50);
+  text(result[0].Name  + " Revenue", 280, 50);
   // Y label
   fill(255, 255, 255);
   textSize(12);
@@ -73,7 +105,7 @@
 	stroke(255, 255, 255);
 	line(80, 80, 80, 540);
 	line(80, 540, 700, 540);
-	// Generate yLabel array
+	// Generate yLabel array, First 2 are empty for spacing from top
 	var yLabels = ["", ""];
 	for(var i = 0; i<10; i++){
 		yLabels.push(labelRev);
@@ -87,25 +119,31 @@
 		y+=45;
 	}
 
-	// Scale data height to canvas window.
+	// Scales bar height to canvas window based on max revenue.
+	// Generate bar heights per ticket type
+	// Label the x-axis with items array
+
+	ctx.font="bold 14px Arial";
+	text("Ticket Type", canvas.width/2 - 100, 620);
+	ctx.font="12px Arial";
 	for(var key in revenue){
 		if(revenue[key] === maxRev){
 			var height = 450;
-			fill(0, 128, 0);
+			fill(0, 26, 70);
 			rect(x + spacing, 540-height, x+width, height);
 			fill(250, 250, 250);
-			text(items[key], 200, 580);
+			text(items[key], x + spacing, 580);
 
-			spacing+=100;
+			spacing+=150;
 		}
 		else{
 			var height = revenue[key]/maxRev * 450;
-			fill(0, 128, 0);
+			fill(0, 26, 70);
 			rect(x + spacing, 540-height, x+width, height);
 			fill(250, 250, 250);
-			text(items[key], spacing, 580);
+			text(items[key], x + spacing, 580);
 
-			spacing+=100;
+			spacing+=150;
 		}
 	}
 
@@ -124,53 +162,47 @@
   ctx.stroke();
 
   // Arc data
-  var EventsSold = 30;
-  var totalEvents = 50;
-  var EventPercent = EventsSold / totalEvents;
+  var EventPercent = numberBought / totalTickets;
   var EventArc = (EventPercent * 2 + 1.5) * Math.PI;
   ctx.beginPath();
   ctx.arc(x2, y2, radius, startAngle, EventArc, counterClockwise);
   ctx.lineWidth = 15;
   // Arc color
-  ctx.strokeStyle = 'green';
+  ctx.strokeStyle = ('green');
   ctx.stroke();
 
   // Arc Text Labels
-  text("% Ticket Sales", (canvas.width/1.67 + 100), (canvas.height/8))
+  ctx.font="20px Arial";
+  text("% Tickets Sold", (canvas.width/1.60 + 100), (canvas.height/8))
   ctx.font="30px Arial";
-  text(EventPercent * 100, (canvas.width/1.25 - 20), (canvas.height/3.5 + 10))
+  text(EventPercent * 100, (canvas.width/1.28 - 20), (canvas.height/3.5 + 10))
+  var remaining = totalTickets - numberBought;
+  ctx.font="20px Arial";
+  text("Tickets Remaining", (canvas.width/1.60 + 100), (canvas.height/2));
+  text(remaining, (canvas.width/1.60 + 100), (canvas.height/1.8));
+  ctx.font="20px Arial";
+  text("Total Revenue", (canvas.width/1.60 + 100), (canvas.height/1.2));
+  var total = 0;
+  for(var i = 0; i < revenue.length; i++){
+  	total += revenue[i];
+  	if(i==revenue.length-1){
+  		ctx.font="30px Arial";
+  		text(total, (canvas.width/1.60 + 100), (canvas.height/1.1))
+  	}
+  }
+  $('#mycanvas').css('border', "solid 2px #4A6EA9");
   }};
-  // Get the canvas that Processing-js will use
 
+  // Get the canvas that Processing-js will use
   var canvas = document.getElementById("mycanvas");
 	var ctx = canvas.getContext("2d");
   // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
 
   var processingInstance = new Processing(canvas, sketchProc);
- 
+ 		});	
+	})
  </script>
  <script>
-
-//  	db.customer.findOneAndUpdate(
-//    { "barcode" : fieldVal },
-//    { $set: { "attended": true, "valid": false}}
-// )
-//   var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=" + startYr + "&end_date=" + endYr + "&q=" + topic + "&api-key=b779cd17ea10424083116446ded0f34b";
-//     axios.get(queryURL).then((response) => {
-//       // If get get a result, return that result's formatted address property
-//       // if (response.data.results[0]) {
-//       //   return response.data.results[0].formatted;
-//       // }
-//       for(var i = 0; i < 5; i++){
-//       	var articleData = {
-// 	      	title: response.data.response.docs[i].headline.main,
-// 	      	link: response.data.response.docs[i].web_url
-// 	      }
-//       this.setState({results: articleData});
-//       // };
-//     	}
-//     })
- 	// To get total tickets loop over event.options array for event.options[i].optionName, optionPrice, optionQuantity, numberBought
 
  </script>
     <footer>&copy; 2017 MyTix
