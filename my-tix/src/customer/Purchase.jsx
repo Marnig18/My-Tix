@@ -12,7 +12,7 @@ class Purchase extends React.Component{
       option: "",
       customerName: "",
       customerEmail: "",
-      barcode: "",
+      barcode: 0,
       customer: []
     }
     this.handleChange = this.handleChange.bind(this)

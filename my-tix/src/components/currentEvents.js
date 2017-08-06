@@ -2,9 +2,12 @@ import React from 'react'
 import { Button, Row, Col,  Modal } from 'react-bootstrap';
 import { FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap'
 import {LinkContainer} from "react-router-bootstrap"
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 // import CurrentEvents from "./currentEvents"
 import EditOptionsList from './EditOptionsList'
+import moment from 'moment'
+import Graph from './graphComponent'
+
 
 class CurrentEvents extends React.Component{
 	constructor(){
@@ -18,7 +21,11 @@ class CurrentEvents extends React.Component{
 			formEditEndDate:"",
 			formEditPicture:"",
 			formEditLocation:"",
-			eventID: ""
+			eventID: "",
+			startdate: "",
+			current: "",
+			url: ""
+		
 		}
 		this.handleChange=this.handleChange.bind(this)
 		this.handleEditSubmit=this.handleEditSubmit.bind(this)
@@ -80,11 +87,29 @@ class CurrentEvents extends React.Component{
 		}
 
 		componentDidMount(){
+			var now = moment().format("YYYY MM DD");
+			console.log(now)
+			var StartDate = this.props.startdate
+			var converted = moment(StartDate).format("YYYY MM DD")
+			console.log(converted)
+			var ID = this.props.id
+			console.log(ID)
+
 			this.setState({
-				eventID: this.props.id
+				eventID: this.props.id,
+				startdate: StartDate,
+				current: now,
+				url: "/events/" + ID
+			
 			})
+		
 		}
 
+		
+
+		
+
+		
 
 
 	render(){
@@ -92,9 +117,12 @@ class CurrentEvents extends React.Component{
 		// 	<ListGroup>
 		// 		{this.props.currentEvents.map((obj, index) =>
 		// 		<ListGroupItem key={index}>
+	
 					<Row bsClass="row">
 						<Col bsClass="col" xs={8}>
 							<h4>{this.props.name}</h4>
+							<h5>Start Date: {this.props.startdate}</h5>
+							<h5>EndDate: {this.props.endDate}</h5>
 						</Col>
 						<Col bsClass="col" xs={4}>
 							<Button onClick={this.showModal} block>Edit Event</Button>
@@ -156,31 +184,25 @@ class CurrentEvents extends React.Component{
 											
 													</Modal.Body>
 													<Modal.Footer>
-														<FormGroup>
-												      <Col smOffset={2} sm={10}>
-												        <Button type="submit" onClick={this.handleEditSubmit}>
-												          Save Changes
-												        </Button>
-												      </Col>
-												    </FormGroup>
-												   </Modal.Footer> 
+												
+											        <Button onClick={this.hideModal} >Close</Button>
+											        <Button type="submit" onClick={this.handleOptionSubmit} onClick={this.hideModal}  bsStyle="primary">Save changes</Button>
+											      </Modal.Footer>
+										
 												</Form>
 										</Modal>
-								<Button block onClick={this.showModal2}>View Data</Button>
-								<Modal
-				          show={this.state.show2}
-				          onHide={this.hideModal2}>
-									<Modal.Header>
-										<Modal.Title>Data</Modal.Title>
-									</Modal.Header>
-									<Modal.Body>Graphs go here</Modal.Body>
-									<Modal.Footer>
-										<Button onClick={this.hideModal2}>Close</Button>
-									</Modal.Footer>	
-								</Modal>
-							<LinkContainer exact to="/home/events/:id"><Button block>Customer Page</Button></LinkContainer>
+
+
+
+								<Button block >View Data</Button>
+								<Button block href={this.state.url}>Customer Page</Button>
+
 						</Col>
+						
 					</Row>
+					
+
+				
 			//  	</ListGroupItem>
 			//  )}
 			// </ListGroup>

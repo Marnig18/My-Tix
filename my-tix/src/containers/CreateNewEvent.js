@@ -66,7 +66,7 @@ class CreateNewEvent extends React.Component{
 			event.preventDefault()
 			console.log('handlesubmit called')
 			// console.log(this.state)
-			this.props.makeNewEvent(this.state.newEventName, this.state.newEventStart, this.state.newEventEnd, this.state.newEventPicture, this.props.options)
+			this.props.makeNewEvent(this.state.newEventName, this.state.newEventStart, this.state.newEventEnd, this.state.newEventLocation,this.state.newEventPicture, this.props.options)
 			console.log("================")
 			console.log(this.props.options)
 			this.setState({
@@ -104,7 +104,7 @@ class CreateNewEvent extends React.Component{
 								</FormGroup>
 								<FormGroup controlId="newEventLocation"> 
 									<ControlLabel>Location</ControlLabel>
-									<FormControl type="date" value={this.state.value} onChange={this.handleChange} placeholder="Address"/>
+									<FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Address"/>
 								</FormGroup>
 								<FormGroup controlId="newEventPicture"> 
 									<ControlLabel>Picture</ControlLabel>
@@ -132,7 +132,7 @@ class CreateNewEvent extends React.Component{
 											</FormGroup>
 											<FormGroup controlId="newOptionLocation"> 
 												<ControlLabel>Location</ControlLabel>
-												<FormControl type="integer" value={this.state.newOptionQuantity} onChange={this.handleChange} placeholder="Address"/>
+												<FormControl type="text" value={this.state.newOptionQuantity} onChange={this.handleChange} placeholder="Address"/>
 											</FormGroup>
 											<FormGroup controlId="newOptionDescription"> 
 												<ControlLabel>Description</ControlLabel>

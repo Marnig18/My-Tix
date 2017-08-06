@@ -30,8 +30,9 @@ class CurrentEventsList extends React.Component{
 				<ListGroup>		
 					{this.props.currentEvents.map(item =>
 					
-						<ListGroupItem key={item._id}>
-							<CurrentEvents  editEvent={this.props.editEvent}  name={item.Name} options={item.Option} id={item._id} editOption={this.props.editOption}/>
+						<ListGroupItem className="eventsList" key={item._id}>
+							<CurrentEvents  editEvent={this.props.editEvent}  name={item.Name} options={item.Option} id={item._id} editOption={this.props.editOption} startdate={item.StartDate} endDate={item.EndDate}
+							/>
 						</ListGroupItem>
 					)}
 				

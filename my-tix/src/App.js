@@ -132,7 +132,7 @@ class App extends React.Component{
 			<Grid fluid>
 				<Row bsClass="row">
 					<Col bsClass="col" xs={4}>
-						<Nav bsStyle="pills" stacked activeKey={1}>
+						<Nav bsStyle="pills" stacked activeKey={1} id="nav">
 							<LinkContainer exact to="/home"><NavItem  id=" navItem" eventKey={1}>Home</NavItem></LinkContainer>
 							<LinkContainer exact to="/home/newevent"><NavItem  eventKey={2}>Create New Events</NavItem></LinkContainer>
 							<LinkContainer exact to= "/home/editUser"><NavItem eventKey={3}>User Settings</NavItem></LinkContainer>
@@ -144,6 +144,8 @@ class App extends React.Component{
 							<Route exact path="/home" render={(props) =><Home  editEvent={this.editEvent} editOption={this.editOption}/>} />
 							<Route exact path="/home/newevent" render={(props)=><CreateNewEvent makeNewOption={this.makeNewOption} makeNewEvent={this.makeNewEvent} options={this.state.options}/>} />
 							<Route exact path="/home/editUser" component={Settings} />
+						
+
 
 					</Switch>
 						</div>

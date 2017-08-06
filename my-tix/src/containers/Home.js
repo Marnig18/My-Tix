@@ -3,6 +3,7 @@ import { Button, Row, Col, ListGroupItem, PageHeader, Grid, Modal } from 'react-
 import { ListGroup } from 'react-bootstrap'
 import helper from "../utils/helpers"
 import CurrentEventsList from "../components/CurrentEventsList"
+import Graph from '../components/graphComponent'
 
 class Home extends React.Component{
 
@@ -13,6 +14,7 @@ class Home extends React.Component{
 		
 			show3: false,
 			events: []
+
 		}
 
 
@@ -54,13 +56,13 @@ class Home extends React.Component{
 				<Grid fluid>
 					<Row bsClass="row">
 						<Col bsClass="col" xs={12}>
-							<PageHeader><small>Current Events</small></PageHeader>
+							<PageHeader><small className="titles">Current Events</small></PageHeader>
 							<CurrentEventsList currentEvents={this.state.events} editEvent={this.props.editEvent} editOption={this.props.editOption}/>
 						</Col>
 					</Row>
 					<Row bsClass="row">
 						<Col bsClass="col" xs={12}>
-							<PageHeader><small>Past Events</small></PageHeader>
+							<PageHeader><small className="titles">Past Events</small></PageHeader>
 							<ListGroup>
 								<ListGroupItem>
 									<Row bsClass="row">
@@ -75,7 +77,9 @@ class Home extends React.Component{
 													<Modal.Header>
 														<Modal.Title>Data</Modal.Title>
 													</Modal.Header>
-													<Modal.Body>Graphs go here</Modal.Body>
+													<Modal.Body>
+														<Graph /> 
+													</Modal.Body>
 													<Modal.Footer>
 														<Button onClick={this.hideModal3}>Close</Button>
 													</Modal.Footer>	
@@ -85,6 +89,9 @@ class Home extends React.Component{
 								</ListGroupItem>
 							</ListGroup>
 						</Col>
+					</Row>
+					<Row bsClass='row'>
+						
 					</Row>
 				</Grid>
 		
