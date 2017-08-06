@@ -17,6 +17,21 @@ Added class in home.js , createNewEvent.js, Settings.js
 	margin-bottom: 20px;
 }
 
+#dataBkgd{
+	font-size: 22px;
+	margin: 20px;
+	border-bottom: 1px solid #FFF;
+}
+
+#dataArea{
+	margin-left: 460px;
+}
+
+#dataForm{
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
 #tixLogo{
 	width: 50px;
 	height: 50px;
