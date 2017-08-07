@@ -40,7 +40,7 @@ var app = express();
 var PORT = process.env.PORT || 3001;
 
 //host static docs
- app.use(express.static("build"));
+ app.use('/static', express.static("public"));
  // app.get('/', (req, res) => {
  // 	console.log('hello')
  // 	res.json({test: 'hello'})
@@ -86,11 +86,4 @@ require("./routes/customer-api-routes")(app);
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
-
-
-
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
-
 

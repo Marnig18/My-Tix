@@ -99,28 +99,28 @@ app.post("/api/newEvent", function(req, res){
 	})
 
 //Barcodes/
-app.get("/api/barcode", function(req, res){
-  var barcode = parseInt(req.query.barcode);
-  console.log("API barcode " + barcode);
-  // Is it in the database, if so run this function	
-	Customer.find({barcode: barcode}).exec(function(err, doc){
-    if (err) {
-      console.log(err);
-    }
-    else if (doc[0].attended == true){
-      res.send("Ticket is not valid.");
-    }
-    else if (doc[0].attended == false){
-	Customer.findOneAndUpdate({barcode: barcode}, {$set: {attended: true}}, function(err, doc){
-		if(err) throw err;
-		else {
-			console.log("Updated");
-			res.send("Valid Ticket. Enjoy the show.");
-		}
-	});
-    }
-	})
-	})
+// app.get("/api/barcode", function(req, res){
+//   var barcode = parseInt(req.query.barcode);
+//   console.log("API barcode " + barcode);
+//   // Is it in the database, if so run this function	
+// 	Customer.find({barcode: barcode}).exec(function(err, doc){
+//     if (err) {
+//       console.log(err);
+//     }
+//     else if (doc[0].attended == true){
+//       res.send("Ticket is not valid.");
+//     }
+//     else if (doc[0].attended == false){
+// 	Customer.findOneAndUpdate({barcode: barcode}, {$set: {attended: true}}, function(err, doc){
+// 		if(err) throw err;
+// 		else {
+// 			console.log("Updated");
+// 			res.send("Valid Ticket. Enjoy the show.");
+// 		}
+// 	});
+//     }
+// 	})
+// 	})
 
 	
 

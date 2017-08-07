@@ -18,12 +18,12 @@ var EventSchema = new Schema({
 
   barcode: {
     type: Number,
-    required: true
+    
   },
 
   attended: {
     type: Boolean,
-    required: true
+
   },
 
 
