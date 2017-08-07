@@ -120,6 +120,7 @@ class App extends React.Component{
 
 
 	render(){
+		
 		return(
 		<div>
 			<Grid  fluid id="header">

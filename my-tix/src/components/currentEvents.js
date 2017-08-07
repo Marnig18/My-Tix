@@ -25,7 +25,7 @@ class CurrentEvents extends React.Component{
 			startdate: "",
 			current: "",
 			url: "",
-			before: false
+			before: null
 		
 		}
 		this.handleChange=this.handleChange.bind(this)
@@ -125,7 +125,7 @@ class CurrentEvents extends React.Component{
 		// 	<ListGroup>
 		// 		{this.props.currentEvents.map((obj, index) =>
 		// 		<ListGroupItem key={index}>
-				// if (before){
+
 					<Row bsClass="row" className="listItem">
 						<Col bsClass="col" xs={8}>
 							<h4>{this.props.name}</h4>
@@ -208,7 +208,7 @@ class CurrentEvents extends React.Component{
 						</Col>
 						
 					</Row>
-					// }
+			
 
 				
 			//  	</ListGroupItem>

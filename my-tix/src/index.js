@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import App from './App';
 import Event from './event'
+import OG from  './Passport'
 // import Settings from './containers/Settings'
 // import { BrowserRouter } from 'react-router-dom'
 
@@ -11,7 +12,8 @@ import Event from './event'
 ReactDOM.render(
 <BrowserRouter>
 	<Switch>	
-		<Route path="/home/" component={App} />
+		<Route path='/' component={OG}/>
+	
 		<Route exact path="/events/:id" component={Event} />
 	</Switch>		
 </BrowserRouter>		
