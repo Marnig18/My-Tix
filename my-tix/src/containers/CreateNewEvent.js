@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Row, Col, PageHeader, Grid, Modal } from 'react-bootstrap';
-import {  FormGroup, FormControl, ControlLabel,  } from 'react-bootstrap'
+import {  FormGroup, FormControl, ControlLabel, Form  } from 'react-bootstrap'
 import axios from 'axios'
 import DisplayOptions from '../components/optionsList'
 
@@ -88,26 +88,28 @@ class CreateNewEvent extends React.Component{
 				<Grid fluid>
 					<Row bsClass='row'>
 						<Col bsClass="col" xs={12}>
-						<PageHeader>Create A New Event</PageHeader>
-							<form method="POST" action="/api/event">
+						<PageHeader className="titles">Create A New Event</PageHeader>
+							<form method="POST" action="/api/event" className="createForm">
 								<FormGroup controlId="newEventName"> 
-									<ControlLabel>Event Name</ControlLabel>
+									<ControlLabel className="labels">Event Name</ControlLabel>
 									<FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter Name"/>
 								</FormGroup>
-								<FormGroup controlId="newEventStart"> 
-									<ControlLabel>Start Date</ControlLabel>
-									<FormControl type="date" value={this.state.value} onChange={this.handleChange} placeholder=""/>
-								</FormGroup>
-								<FormGroup controlId="newEventEnd"> 
-									<ControlLabel>End Date</ControlLabel>
-									<FormControl type="date" value={this.state.value} onChange={this.handleChange} placeholder="Enter Name"/>
-								</FormGroup>
+								<Form inline>
+									<FormGroup controlId="newEventStart" className="startInput"> 
+										<ControlLabel className="labels">Start Date</ControlLabel>
+										<FormControl  type="date" value={this.state.value} onChange={this.handleChange} placeholder=""/>
+									</FormGroup>
+									<FormGroup controlId="newEventEnd" className="endInput" > 
+										<ControlLabel className="labels">End Date</ControlLabel>
+										<FormControl  type="date" value={this.state.value} onChange={this.handleChange} placeholder="Enter Name"/>
+									</FormGroup>
+								</Form>	
 								<FormGroup controlId="newEventLocation"> 
-									<ControlLabel>Location</ControlLabel>
+									<ControlLabel className="labels">Location</ControlLabel>
 									<FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Address"/>
 								</FormGroup>
 								<FormGroup controlId="newEventPicture"> 
-									<ControlLabel>Picture</ControlLabel>
+									<ControlLabel className="labels">Picture</ControlLabel>
 									<FormControl type="file" value={this.state.value} onChange={this.handleChange} />
 								</FormGroup>
 								<Button type="button" onClick={this.showModal}>Add an Option</Button>	
@@ -132,7 +134,7 @@ class CreateNewEvent extends React.Component{
 											</FormGroup>
 											<FormGroup controlId="newOptionLocation"> 
 												<ControlLabel>Location</ControlLabel>
-												<FormControl type="text" value={this.state.newOptionQuantity} onChange={this.handleChange} placeholder="Address"/>
+												<FormControl type="text" value={this.state.newOptionLocation} onChange={this.handleChange} placeholder="Address"/>
 											</FormGroup>
 											<FormGroup controlId="newOptionDescription"> 
 												<ControlLabel>Description</ControlLabel>
@@ -144,7 +146,7 @@ class CreateNewEvent extends React.Component{
 							        <Button type="submit" onClick={this.handleOptionSubmit}  bsStyle="primary">Save changes</Button>
 							      </Modal.Footer>
 							  	 </Modal>	
-									<DisplayOptions options={this.props.options}/>
+									<DisplayOptions options={this.props.options} className="options"/>
 							  <Button type="submit" onClick={this.handleEventSubmit}>Add Event</Button>				   
 							</form>
 						</Col>

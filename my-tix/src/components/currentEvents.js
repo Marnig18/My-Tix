@@ -24,7 +24,8 @@ class CurrentEvents extends React.Component{
 			eventID: "",
 			startdate: "",
 			current: "",
-			url: ""
+			url: "",
+			before: false
 		
 		}
 		this.handleChange=this.handleChange.bind(this)
@@ -94,6 +95,12 @@ class CurrentEvents extends React.Component{
 			console.log(converted)
 			var ID = this.props.id
 			console.log(ID)
+			if(moment().isBefore(StartDate)){
+				this.setState({
+					before: true
+				})
+			}
+		
 
 			this.setState({
 				eventID: this.props.id,
@@ -113,19 +120,20 @@ class CurrentEvents extends React.Component{
 
 
 	render(){
+		const before = this.state.before
 		return(
 		// 	<ListGroup>
 		// 		{this.props.currentEvents.map((obj, index) =>
 		// 		<ListGroupItem key={index}>
-	
-					<Row bsClass="row">
+				// if (before){
+					<Row bsClass="row" className="listItem">
 						<Col bsClass="col" xs={8}>
 							<h4>{this.props.name}</h4>
 							<h5>Start Date: {this.props.startdate}</h5>
 							<h5>EndDate: {this.props.endDate}</h5>
 						</Col>
 						<Col bsClass="col" xs={4}>
-							<Button onClick={this.showModal} block>Edit Event</Button>
+							<Button className="homeButtons" onClick={this.showModal} block>Edit Event</Button>
 								<Modal
 				          show={this.state.show}
 				          onHide={this.hideModal}>
@@ -194,13 +202,13 @@ class CurrentEvents extends React.Component{
 
 
 
-								<Button block >View Data</Button>
-								<Button block href={this.state.url}>Customer Page</Button>
+								<Button className="homeButtons" block >View Data</Button>
+								<Button className="homeButtons" block href={this.state.url}>Customer Page</Button>
 
 						</Col>
 						
 					</Row>
-					
+					// }
 
 				
 			//  	</ListGroupItem>

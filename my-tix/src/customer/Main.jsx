@@ -15,9 +15,9 @@ class Main extends React.Component{
     this.props.setView(this.state.number);
   }
 
-	render(){
-		return(
-  		<div className="container">
+  render(){
+    return(
+      <div className="container">
         <div className="row" id="mainBlock">
           <div className="col-sm-12">
             <ol className="breadcrumb">
@@ -47,8 +47,8 @@ class Main extends React.Component{
         </div>
       </div>
     
-		);
-	}
+    );
+  }
 }
 
 export default Main;

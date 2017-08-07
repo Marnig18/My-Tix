@@ -8,7 +8,7 @@ const DisplayOptions = props => {
 		console.log(item)
 		return (
 
-				<ListGroupItem key={item._id}>
+				<ListGroupItem key={item._id} className="options">
 					<h4>{item.optionName}</h4>
 					<p>{item.optionPrice}</p>
 					<p>{item.optionQuantity}</p>

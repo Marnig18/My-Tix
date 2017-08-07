@@ -12,7 +12,7 @@ class Purchase extends React.Component{
       option: "",
       customerName: "",
       customerEmail: "",
-      barcode: 0,
+      barcode: "",
       customer: []
     }
     this.handleChange = this.handleChange.bind(this)
@@ -22,6 +22,12 @@ class Purchase extends React.Component{
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
+    })
+  }
+
+  handleOptionSelect(event) {
+    this.setState({
+      option: event.target.key
     })
   }
 
@@ -41,7 +47,7 @@ class Purchase extends React.Component{
     var num11 = Math.floor(Math.random()*10);
     var num12 = Math.floor(Math.random()*10);
 
-    var barcode = num1.toString() 
+    var theBarcode = num1.toString() 
                 + num2.toString() 
                 + num3.toString() 
                 + num4.toString() 
@@ -52,10 +58,10 @@ class Purchase extends React.Component{
                 + num9.toString() 
                 + num10.toString() 
                 + num11.toString() 
-                + num12.toString();
+                + num12.toString()
 
     this.setState({
-      barcode: barcode
+      barcode: theBarcode
     })
 
     if (this.state.quantitySelect === "" || this.state.option === "" || this.state.customerName === "" || this.state.customerEmail === "") {
@@ -64,7 +70,6 @@ class Purchase extends React.Component{
       document.getElementById("purchaseInfo").classList.add('panel-danger');
       var warn = document.getElementById("warn")
       warn.style.display = "block"
-
 
     } 
     else {
@@ -78,20 +83,22 @@ class Purchase extends React.Component{
         option: this.state.option,
         customerName: this.state.customerName,
         customerEmail: this.state.customerEmail,
-        barcode: this.state.barcode
+        barcode: theBarcode
       })
       .then(response => {
         console.log(response.data)
         this.setState({
-          customer: response.data
+          customer: response.data,
+          barcode: theBarcode
         })
       })
-
+      this.props.setBarcode(theBarcode)
+      
       this.props.setView(this.state.number);
     }
   }
  
-	render(){
+  render(){
 
     const allItems = this.props.option.map(item => { 
 
@@ -118,8 +125,8 @@ class Purchase extends React.Component{
 
     })
 
-		return(
-		<div className="container">
+    return(
+    <div className="container">
       
       <div className="row" id="purchaseBlock">
         <div className="col-sm-12">
@@ -176,7 +183,8 @@ class Purchase extends React.Component{
                     <br /><br />
                     <form>
                       <label htmlFor="option">Ticket Option:</label>
-                      <select id="option" value={this.state.option} name="option" onClick={this.handleChange}>
+                      <select id="option" name="option" onClick={this.handleChange}>
+                        <option></option>
                         {Selector}
                       </select>
                     </form>
@@ -205,8 +213,8 @@ class Purchase extends React.Component{
 
     </div>
     
-		);
-	}
+    );
+  }
 }
 
-export default Purchase;
+export default Purchase

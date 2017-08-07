@@ -12,7 +12,8 @@ class Event extends React.Component{
 
 		this.state = {
 			eventSelect: [],
-			view: 0
+			view: 0,
+			barcode: 0
 		}
 	}; 
 
@@ -21,8 +22,6 @@ class Event extends React.Component{
 		console.log(pathname)
 		var pathnameString = pathname.substring(8)
 		console.log(pathnameString)
-
-	
 
 		axios.get("/events/" + pathnameString)
 		.then(function(response){
@@ -37,6 +36,10 @@ class Event extends React.Component{
 
 	setView = (number) => {
 		this.setState({ view: number })
+	}
+
+	setBarcode = (theBarcode) => {
+		this.setState({ barcode: theBarcode })
 	}
 
 	render(){
@@ -62,10 +65,15 @@ class Event extends React.Component{
 				name={this.state.eventSelect.Name} 
 				option={this.state.eventSelect.Option}
 				_id={this.state.eventSelect._id}
+				setBarcode={this.setBarcode}
 			/>
 		}
 		else if(view === 2){
-			viewContainer = <Ticket />
+			viewContainer = <Ticket 
+				barcode={this.state.barcode}
+				name={this.state.eventSelect.Name}
+				startDate={this.state.eventSelect.StartDate}
+			/>
 		}
 
 		return(

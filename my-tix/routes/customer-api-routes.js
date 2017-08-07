@@ -18,21 +18,6 @@ module.exports = function(app) {
     });
   });
 
- // app.post("/api/customer", function(req, res) {
-    
- //    var entry = new Customer(req.body);
-
- //    entry.save(function(err, doc) {
- //      if (err) {
- //        console.log(err)
- //      }
- //      else {
- //        console.log(doc)
- //      }
- //      res.json(data);
- //    });
- //  });
-
  // Create a new note or replace an existing note
   app.post("/api/customer/:id", function(req, res) {
     // Create a new note and pass the req.body to the entry
@@ -64,5 +49,19 @@ module.exports = function(app) {
       }
     });
   });
+
+  app.get("/ticket/:barcode", function(req, res) {
+    console.log("ticket route hit")
+    Customer.findOne({ 
+      "barcode": req.params.barcode
+    }).exec(function(err, doc) {
+      if (err) {
+        console.log(err)
+      }
+      else {
+        res.json(doc)
+      }
+    })
+  })
 
 }
